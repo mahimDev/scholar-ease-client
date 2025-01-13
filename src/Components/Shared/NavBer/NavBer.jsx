@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 
 const NavBer = () => {
-    const { user, } = useAuth()
+    const { user, userSignOut } = useAuth()
     console.log(user)
     // const user = false
     const [open, setOpen] = useState(false)
@@ -15,14 +15,14 @@ const NavBer = () => {
 
     </>
     const handleLogout = () => {
-        // signOutUser()
-        //     .then(() => {
+        userSignOut()
+            .then(() => {
 
-        //         toast.success('logout successfully')
-        //     })
-        //     .catch(() => {
+                console.log('logout successfully')
+            })
+            .catch(() => {
 
-        //     })
+            })
     }
     return (
 
