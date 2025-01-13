@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const NavBer = () => {
     const { user, userSignOut } = useAuth()
@@ -11,14 +12,22 @@ const NavBer = () => {
         <NavLink to={'/'}> <li>Home</li></NavLink>
         <NavLink to={'/'}><li>All Scholarship</li></NavLink>
 
-        <NavLink to={'dashboard'}><li>Dashboard</li></NavLink>
+        {user &&
+            <NavLink to={'dashboard'}><li>Dashboard</li></NavLink>
+        }
 
     </>
     const handleLogout = () => {
         userSignOut()
             .then(() => {
 
-                console.log('logout successfully')
+                toast.success('Logout successful', {
+                    position: 'top-center',
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    theme: 'colored',
+
+                })
             })
             .catch(() => {
 
@@ -27,7 +36,7 @@ const NavBer = () => {
     return (
 
 
-        <div className="top-0 mt-8 z-[500] md:w-11/12 mx-auto  sticky md:rounded-full  bg-background text-text    py-4 ">
+        <div className="top-0 mt-8 z-[50] md:w-11/12 mx-auto  sticky md:rounded-full  bg-background text-text    py-4 ">
             <div className="flex justify-between w-11/12 mx-auto items-center  py-2 px-3 rounded-full backdrop-blur-xl">
 
                 <div className="md:hidden block ">
@@ -64,12 +73,12 @@ const NavBer = () => {
                                     width={500}
                                     height={500}
                                     className="size-12 rounded-full bg-slate-500 object-cover"
-                                    src=''
-                                    alt="avatar GlobalGate"
+                                    src={user?.photoUrl}
+                                    alt="avatar"
                                 />
                                 <div className={`group-hover:block hidden rounded-xl absolute right-0 top-12 p-5 bg-white/70 backdrop-blur-2xl text-darkGray`}>
-                                    <h1 className="mb-2">{'user?.displayName'}</h1>
-                                    <h1 className="my-2">{'user?.email'}</h1>
+                                    <h1 className="mb-2">{user?.displayName}</h1>
+                                    <h1 className="my-2">{user?.email}</h1>
                                     <button
 
                                         onClick={handleLogout}

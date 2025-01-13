@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
-    const { user, createUser } = useAuth()
+    const { user, createUser, googleLogin } = useAuth()
+    const navigate = useNavigate()
     console.log(user)
     const handleRegisterBtn = e => {
         e.preventDefault();
@@ -10,16 +12,51 @@ const Register = () => {
         const userInfo = Object.fromEntries(form.entries())
         createUser(userInfo.email, userInfo.password)
             .then(res => {
-                console.log(res)
+                toast.success('Login successful', {
+                    position: 'top-center',
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    theme: 'colored',
+
+                })
             })
             .catch(err => {
-                console.log(err)
+
+                toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
+                    position: 'top-center',
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    theme: 'colored',
+
+                })
+            })
+    }
+    const handleGoogleBtn = () => {
+        googleLogin()
+            .then(res => {
+                toast.success('Login with google successful', {
+                    position: 'top-center',
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    theme: 'colored',
+                })
+                navigate('/')
+            })
+            .catch(err => {
+                toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
+                    position: 'top-center',
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    theme: 'colored',
+
+                })
             })
     }
     return (
         <div>
+            <ToastContainer />
             <div className="bg-[url('https://i.ibb.co.com/0nWCqXg/employees-using-laptop-800x450.jpg')]  bg-cover ">
-                <div className="backdrop-blur-md bg-black/25 h-[100vh] flex justify-center">
+                <div className="backdrop-blur-md bg-black/25 min-h-[100vh] flex justify-center">
                     <div className="mt-40 border h-fit p-10 rounded-md shadow-2xl  bg-white/20">
                         <h1 className="font-bold text-6xl text-white  text-center mb-9">Register</h1>
                         <form
@@ -50,7 +87,7 @@ const Register = () => {
                         <hr className="mt-5" />
                         <div className="flex justify-evenly gap-5 mt-5">
                             <button
-                            // onClick={handleGoogleBtn}
+                                onClick={handleGoogleBtn}
                             ><img className="w-12 hover:shadow-2xl hover:scale-110 duration-500 rounded-full" src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="" /></button>
                             <button
 
