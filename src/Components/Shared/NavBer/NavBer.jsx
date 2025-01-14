@@ -9,7 +9,7 @@ const NavBer = () => {
 
     const nav = <>
         <NavLink to={'/'}> <li>Home</li></NavLink>
-        <NavLink to={'/'}><li>All Scholarship</li></NavLink>
+        <NavLink to={'allScholarship'}><li>All Scholarship</li></NavLink>
 
         {user &&
             <NavLink to={'dashboard'}><li>Dashboard</li></NavLink>
