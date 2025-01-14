@@ -5,9 +5,8 @@ import { toast } from "react-toastify";
 
 const NavBer = () => {
     const { user, userSignOut } = useAuth()
-    console.log(user)
-    // const user = false
     const [open, setOpen] = useState(false)
+
     const nav = <>
         <NavLink to={'/'}> <li>Home</li></NavLink>
         <NavLink to={'/'}><li>All Scholarship</li></NavLink>
@@ -20,13 +19,11 @@ const NavBer = () => {
     const handleLogout = () => {
         userSignOut()
             .then(() => {
-
                 toast.success('Logout successful', {
                     position: 'top-center',
                     hideProgressBar: true,
                     autoClose: 2000,
                     theme: 'colored',
-
                 })
             })
             .catch(() => {
@@ -34,8 +31,6 @@ const NavBer = () => {
             })
     }
     return (
-
-
         <div className="top-0 mt-8 z-[50] md:w-11/12 mx-auto  sticky md:rounded-full  bg-background text-text    py-4 ">
             <div className="flex justify-between w-11/12 mx-auto items-center  py-2 px-3 rounded-full backdrop-blur-xl">
 

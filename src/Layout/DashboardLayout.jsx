@@ -1,9 +1,11 @@
 import { FaHome } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const DashboardLayout = () => {
     return (
         <div>
+            <ToastContainer />
             <div >
                 <div className="flex">
                     {/* menu items */}
