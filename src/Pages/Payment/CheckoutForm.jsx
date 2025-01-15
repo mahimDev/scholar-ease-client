@@ -4,8 +4,9 @@ import { toast, ToastContainer } from "react-toastify";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import { useEffect, useState } from "react";
+import ApplyForm from "../../Components/Accessories/ApplyForm/ApplyForm";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ loaderData }) => {
     const { user } = useAuth();
     const [clientSecret, setClientSecret] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
@@ -13,7 +14,7 @@ const CheckoutForm = ({ price }) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
-
+    const price = loaderData?.applicationFees
     useEffect(() => {
         if (price > 0) {
             axiosSecure
@@ -89,6 +90,8 @@ const CheckoutForm = ({ price }) => {
     return (
         <div>
             <ToastContainer />
+            <h1 className="text-3xl font-semibold my-10">Application Fee : $ {price}</h1>
+
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{
@@ -115,7 +118,7 @@ const CheckoutForm = ({ price }) => {
                 </button>
             </form>
             {open ?
-                <h1>hhhhhhhhhhhh</h1>
+                <ApplyForm data={loaderData}></ApplyForm>
                 : ''}
         </div>
     );

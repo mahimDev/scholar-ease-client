@@ -1,27 +1,47 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-    const { user, createUser, googleLogin } = useAuth()
+    const { user, createUser, googleLogin, updateUserProfile } = useAuth()
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
-    console.log(user)
+
     const handleRegisterBtn = e => {
         e.preventDefault();
         const form = new FormData(e.target)
         const userInfo = Object.fromEntries(form.entries())
         createUser(userInfo.email, userInfo.password)
-            .then(res => {
-                toast.success('Login successful', {
-                    position: 'top-center',
-                    hideProgressBar: true,
-                    autoClose: 2000,
-                    theme: 'colored',
+            .then((res) => {
+                // update user name and phot url
+                updateUserProfile(userInfo.name, userInfo.photo)
+                    .then(async (res) => {
+                        // create a new profile api in mongoDB
+                        const userData = {
+                            user_name: userInfo?.name,
+                            user_email: userInfo?.email,
+                            user_img: userInfo?.photo,
+                            user_password: userInfo?.password
+                        }
+                        const resulst = await axiosPublic.post('/user', userData)
+                        console.log(resulst.data.insertedId)
+                        if (resulst.data.insertedId) {
+                            toast.success('Register successfully', {
+                                position: 'top-center',
+                                hideProgressBar: true,
+                                autoClose: 2000,
+                                theme: 'colored',
+                            })
+                            navigate('/')
+                        }
+                    })
+                    .catch(() => {
+                        console.log("Error")
+                    })
 
-                })
             })
             .catch(err => {
-
                 toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
                     position: 'top-center',
                     hideProgressBar: true,
@@ -33,14 +53,21 @@ const Register = () => {
     }
     const handleGoogleBtn = () => {
         googleLogin()
-            .then(res => {
-                toast.success('Login with google successful', {
-                    position: 'top-center',
-                    hideProgressBar: true,
-                    autoClose: 2000,
-                    theme: 'colored',
+            .then(async (res) => {
+                const resulst = await axiosPublic.post('/user', {
+                    user_name: res?.user?.displayName,
+                    user_email: res?.user?.email,
+                    user_img: res?.user?.photoURL
                 })
-                navigate('/')
+                if (resulst.data.insertedId) {
+                    toast.success('Register with google successful', {
+                        position: 'top-center',
+                        hideProgressBar: true,
+                        autoClose: 2000,
+                        theme: 'colored',
+                    })
+                    navigate('/')
+                }
             })
             .catch(err => {
                 toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
@@ -54,7 +81,9 @@ const Register = () => {
     }
     return (
         <div>
-            <ToastContainer />
+            <div className="z-50">
+                <ToastContainer />
+            </div>
             <div className="bg-[url('https://i.ibb.co.com/0nWCqXg/employees-using-laptop-800x450.jpg')]  bg-cover ">
                 <div className="backdrop-blur-md bg-black/25 min-h-[100vh] flex justify-center">
                     <div className="mt-40 border h-fit p-10 rounded-md shadow-2xl  bg-white/20">

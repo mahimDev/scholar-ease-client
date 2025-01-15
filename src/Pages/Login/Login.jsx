@@ -1,9 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Login = () => {
     const { loginUser, googleLogin } = useAuth()
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -13,15 +15,12 @@ const Login = () => {
         const userInfo = Object.fromEntries(form.entries())
         loginUser(userInfo.email, userInfo.password)
             .then(res => {
-
                 toast.success('Login successful', {
                     position: 'top-center',
                     hideProgressBar: true,
                     autoClose: 2000,
                     theme: 'colored',
-
                 })
-
                 navigate(location?.state?.pathname || '/')
             })
             .catch(err => {
@@ -37,14 +36,23 @@ const Login = () => {
 
     const handleGoogleBtn = () => {
         googleLogin()
-            .then(res => {
-                toast.success('Login with google successful', {
-                    position: 'top-center',
-                    hideProgressBar: true,
-                    autoClose: 2000,
-                    theme: 'colored',
+            .then(async (res) => {
+                const resulst = await axiosPublic.post('/user', {
+                    user_name: res?.user?.displayName,
+                    user_email: res?.user?.email,
+                    user_img: res?.user?.photoURL
                 })
-                navigate(location?.state?.pathname || '/')
+
+                if (resulst.data.insertedId) {
+                    toast.success('Register with google successful', {
+                        position: 'top-center',
+                        hideProgressBar: true,
+                        autoClose: 2000,
+                        theme: 'colored',
+                    })
+                    navigate(location?.state?.pathname || '/')
+                }
+
             })
             .catch(err => {
                 toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
