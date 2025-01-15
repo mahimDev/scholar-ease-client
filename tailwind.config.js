@@ -12,6 +12,10 @@ export default {
         primary: "#2563EB",
         secondary: "#10B981",
       },
+      animation: {
+        "spin-reverse": "spin 2s linear reverse",
+        "pulse-slow": "pulse 3s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

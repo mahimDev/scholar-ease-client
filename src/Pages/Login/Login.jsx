@@ -1,10 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
     const { loginUser, googleLogin } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+
     const handleLoginBtn = e => {
         e.preventDefault();
         const form = new FormData(e.target)
@@ -20,7 +22,7 @@ const Login = () => {
 
                 })
 
-                navigate('/')
+                navigate(location?.state?.pathname || '/')
             })
             .catch(err => {
                 toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
@@ -42,7 +44,7 @@ const Login = () => {
                     autoClose: 2000,
                     theme: 'colored',
                 })
-                navigate('/')
+                navigate(location?.state?.pathname || '/')
             })
             .catch(err => {
                 toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {

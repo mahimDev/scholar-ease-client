@@ -8,6 +8,7 @@ import AddScholarship from "../Pages/Dashboard/AddScholarship/AddScholarship";
 import AllScholarship from "../Pages/AllScholarship/AllScholarship";
 import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 import Payment from "../Pages/Payment/Payment";
+import UserSecureRoute from "../Secure/UserSecureRoute";
 
 const router = createBrowserRouter([
     {
@@ -24,12 +25,18 @@ const router = createBrowserRouter([
             },
             {
                 path: 'scholarshipDetails/:id',
-                element: <ScholarshipDetails></ScholarshipDetails>,
+                element:
+                    <UserSecureRoute>
+                        <ScholarshipDetails></ScholarshipDetails>
+                    </UserSecureRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/scholarship/${params.id}`)
             },
             {
                 path: 'payment/:id',
-                element: <Payment></Payment>,
+                element:
+                    <UserSecureRoute>
+                        <Payment></Payment>
+                    </UserSecureRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/scholarship/${params.id}`)
             },
         ]

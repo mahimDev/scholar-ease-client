@@ -9,6 +9,7 @@ const CheckoutForm = ({ price }) => {
     const { user } = useAuth();
     const [clientSecret, setClientSecret] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
+    const [open, setOpen] = useState(false)
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
@@ -51,7 +52,7 @@ const CheckoutForm = ({ price }) => {
 
         if (error) {
             console.log(error)
-            toast.error(error.message, { autoClose: 5000, theme: "colored" });
+            toast.error(error.message, { autoClose: 3000, theme: "colored" });
             setIsProcessing(false);
             return;
         }
@@ -68,11 +69,17 @@ const CheckoutForm = ({ price }) => {
 
         if (confirmError) {
             console.error("Confirm error", confirmError);
-            toast.error(confirmError.message, { autoClose: 5000, theme: "colored" });
+            toast.error(confirmError.message, { autoClose: 3000, theme: "colored" });
         } else {
             // console.log("Payment successful:", paymentIntent);
             if (paymentIntent.status === 'succeeded') {
                 console.log("Payment successful")
+                setOpen(true)
+                toast.success("Payment successful", {
+                    autoClose: 3000,
+                    theme: "colored",
+                    position: 'top-center'
+                });
             }
         }
 
@@ -107,6 +114,9 @@ const CheckoutForm = ({ price }) => {
                     {isProcessing ? "Processing..." : "Pay"}
                 </button>
             </form>
+            {open ?
+                <h1>hhhhhhhhhhhh</h1>
+                : ''}
         </div>
     );
 };
