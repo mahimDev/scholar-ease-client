@@ -2,11 +2,14 @@ import { toast } from "react-toastify";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ApplyForm = (props = {}) => {
     const { data } = props || {}
     const { user } = useAuth()
+    const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
+    const [isProcessing, setIsProcessing] = useState(false);
     const [userData, setUserData] = useState()
     useEffect(() => {
         axiosSecure.get(`/user/${user?.email}`)
@@ -14,11 +17,10 @@ const ApplyForm = (props = {}) => {
                 setUserData(res.data)
             })
     }, [axiosSecure, user?.email])
-
     const userEmail = user?.email
     const userName = user?.displayName
-    const userId = userData._id
-    const scholarshipId = (data._id)
+    const userId = userData?._id
+    const scholarshipId = (data?._id)
     const handleImageUpload = async (image) => {
         const formData = new FormData();
         formData.append('image', image);
@@ -37,9 +39,10 @@ const ApplyForm = (props = {}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsProcessing(true)
         const form = new FormData(e.target)
         const formData = Object.fromEntries(form.entries())
-
+        console.log(formData)
         // Handle the image upload
         const imageFile = form.get('photo');
 
@@ -57,13 +60,14 @@ const ApplyForm = (props = {}) => {
             return;
         }
         const applyInfo = { ...formData, userEmail, userName, userId, scholarshipId }
-        console.log(applyInfo)
+        console.log(scholarshipId)
         const res = await axiosSecure.post('/application', applyInfo)
-        console.log(res.data)
+
         if (res.data.insertedId) {
             toast.success('application submitted successful')
+            navigate('/dashboard/myApplication')
         }
-
+        setIsProcessing(false)
     }
     return (
         <div >
@@ -91,7 +95,7 @@ const ApplyForm = (props = {}) => {
                     <div>
                         <label htmlFor="gender" className="block text-gray-700 font-medium mb-2">Applicant Gender</label>
                         <select id="gender" name="gender" className="w-full px-4 py-2 border rounded-lg">
-                            <option value="" disabled selected>Select gender</option>
+                            <option value="" disabled >Select gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
 
@@ -101,7 +105,7 @@ const ApplyForm = (props = {}) => {
                     <div>
                         <label htmlFor="degree" className="block text-gray-700 font-medium mb-2">Applicant Applying Degree</label>
                         <select id="degree" name="degree" className="w-full px-4 py-2 border rounded-lg">
-                            <option value="" disabled selected>Select degree</option>
+                            <option value="" disabled >Select degree</option>
                             <option value="Diploma">Diploma</option>
                             <option value="Bachelor">Bachelor</option>
                             <option value="Masters">Masters</option>
@@ -121,7 +125,7 @@ const ApplyForm = (props = {}) => {
                     <div>
                         <label htmlFor="studyGap" className="block text-gray-700 font-medium mb-2">Study Gap (Optional)</label>
                         <select id="studyGap" name="studyGap" className="w-full px-4 py-2 border rounded-lg">
-                            <option value="" disabled selected>Select gap duration</option>
+                            <option value="" disabled >Select gap duration</option>
                             <option value="1 year">1 year</option>
                             <option value="2 years">2 years</option>
                             <option value="3 years">3 years</option>
@@ -150,7 +154,7 @@ const ApplyForm = (props = {}) => {
                     {/* Submit Button */}
                     <div className="md:col-span-2">
                         <button type="submit" className="w-full bg-secondary text-white py-2 px-4 rounded-lg hover:bg-green-500 hover:scale-105 duration-300 hover:shadow-2xl">
-                            Submit Application
+                            {isProcessing ? " Processing..." : "Submit  Application"}
                         </button>
                     </div>
                 </form>

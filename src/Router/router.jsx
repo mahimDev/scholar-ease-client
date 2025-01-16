@@ -10,6 +10,7 @@ import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 import Payment from "../Pages/Payment/Payment";
 import UserSecureRoute from "../Secure/UserSecureRoute";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import MyApplication from "../Pages/Dashboard/MyApplication/MyApplication";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
             {
                 path: 'manageUsers',
                 element: <ManageUsers></ManageUsers>
+            },
+            // regular user route
+            {
+                path: 'myApplication',
+                element: <MyApplication></MyApplication>
             }
         ]
     },

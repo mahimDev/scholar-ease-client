@@ -71,7 +71,7 @@ const DashboardLayout = () => {
                                         <MdAssignmentAdd />
                                         My Profile</li></NavLink>
 
-                                    <NavLink to={'/dashboard/myApplications'}><li className=" p-2  flex items-center gap-2">
+                                    <NavLink to={'/dashboard/myApplication'}><li className=" p-2  flex items-center gap-2">
                                         <AiFillTool />
                                         My Application</li></NavLink>
 
