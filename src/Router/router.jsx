@@ -9,6 +9,7 @@ import AllScholarship from "../Pages/AllScholarship/AllScholarship";
 import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 import Payment from "../Pages/Payment/Payment";
 import UserSecureRoute from "../Secure/UserSecureRoute";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 
 const router = createBrowserRouter([
     {
@@ -45,9 +46,14 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <DashboardLayout></DashboardLayout>,
         children: [
+            // admin route
             {
                 path: 'addScholarship',
                 element: <AddScholarship></AddScholarship>
+            },
+            {
+                path: 'manageUsers',
+                element: <ManageUsers></ManageUsers>
             }
         ]
     },
