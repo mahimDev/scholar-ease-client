@@ -42,7 +42,6 @@ const Login = () => {
                     user_email: res?.user?.email,
                     user_img: res?.user?.photoURL
                 })
-
                 if (resulst.data.insertedId) {
                     toast.success('Register with google successful', {
                         position: 'top-center',

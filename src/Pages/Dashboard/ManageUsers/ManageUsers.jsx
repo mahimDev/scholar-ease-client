@@ -1,9 +1,12 @@
 import { toast } from 'react-toastify';
 import useUser from '../../../Hooks/useUser';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const ManageUsers = () => {
     const [users, refetch] = useUser()
+    const [isAdmin] = useAdmin()
+    console.log(isAdmin)
     const axiosSecure = useAxiosSecure()
     const handleRoleChange = (e, id) => {
         try {
@@ -79,7 +82,9 @@ const ManageUsers = () => {
                                             onChange={(e) => handleRoleChange(e, user._id)}
                                             defaultValue={user.user_role}
                                             name="subjectCategory"
-                                            className={`p-2  rounded ${user.user_role === 'Admin' ? "bg-orange-400" : user.user_role === 'Modaretor' ? "bg-cyan-500" : user.user_role && "bg-secondary"} text-background`}
+                                            className={`p-2  rounded 
+                                                ${user.user_role ===
+                                                    'Admin' ? "bg-orange-400" : user.user_role === 'Modaretor' ? "bg-cyan-500" : "bg-secondary"} text-background`}
                                             required
                                         >
                                             <option
@@ -95,9 +100,9 @@ const ManageUsers = () => {
                                 </td>
                                 {/* cancel btn */}
                                 <td className="py-4 px-6 border-b text-end">
-                                    <button
+                                    {user.user_role === 'Admin' ? '' : <button
                                         onClick={() => handleDeleteUser(user._id)}
-                                        className="bg-red-600 hover:scale-110 scale-100 transition-all duration-100 text-white py-2 px-4 rounded-md">Delete</button>
+                                        className="bg-red-600 hover:scale-110 scale-100 transition-all duration-100 text-white py-2 px-4 rounded-md">Delete</button>}
                                 </td>
                             </tr>)}
                     </tbody>
