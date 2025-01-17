@@ -2,18 +2,37 @@ import { useNavigate } from "react-router-dom";
 import useScholarship from "../../../Hooks/useScholarship";
 import { useState } from "react";
 import EditScholarshipForm from "../../../Components/Accessories/EditScholarshipForm/EditScholarshipForm";
+import { toast } from "react-toastify";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ManageScholarships = () => {
     const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
     const [scholarships, refetch] = useScholarship()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleEditFormSubmit = () => {
         setIsModalOpen(false)
     }
+    const handleCancelBtn = async (scholarship) => {
+        try {
+            const res = await axiosSecure.delete(`/scholarship/${scholarship._id}`)
+            console.log(res.data)
+            if (res.data.deletedCount > 0) {
+                toast.success(`${scholarship?.scholarshipName}  deleted`, {
+                    autoClose: 3000,
+                    theme: 'colored',
+                    position: 'top-center'
+                })
+                refetch()
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <div>
             <div className="p-6 bg-gray-100">
-                <h2 className="text-4xl font-semibold mb-6 text-center">Your Applied Scholarships : { }</h2>
+                <h2 className="text-4xl font-semibold mb-6 text-center">Total Scholarships : {scholarships.length}</h2>
                 <div className="overflow-x-auto">
                     <table className="w-full table-auto bg-white rounded-lg shadow-lg">
                         <thead >
@@ -51,7 +70,7 @@ const ManageScholarships = () => {
                                                 Edit
                                             </button>
                                             <button
-
+                                                onClick={() => handleCancelBtn(scholarship)}
                                                 className="bg-red-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-red-600"
                                             >
                                                 Delete
