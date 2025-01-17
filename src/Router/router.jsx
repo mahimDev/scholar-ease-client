@@ -11,6 +11,7 @@ import Payment from "../Pages/Payment/Payment";
 import UserSecureRoute from "../Secure/UserSecureRoute";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import MyApplication from "../Pages/Dashboard/MyApplication/MyApplication";
+import MyReviews from "../Pages/Dashboard/MyReviews/MyReviews";
 
 const router = createBrowserRouter([
     {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
             {
                 path: 'myApplication',
                 element: <MyApplication></MyApplication>
-            }
+            },
+            {
+                path: 'myReview',
+                element: <MyReviews></MyReviews>
+            },
         ]
     },
     {

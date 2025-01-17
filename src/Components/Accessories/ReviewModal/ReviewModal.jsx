@@ -110,20 +110,19 @@ import { useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-const ReviewModal = ({ scholarship, user, onClose, onSubmit }) => {
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState("");
+const ReviewModal = ({ data, user, onClose, onSubmit }) => {
+    const [rating, setRating] = useState(data?.rating || 0);
+    const [comment, setComment] = useState(data?.comment || '');
     const reviewDate = new Date().toISOString().split("T")[0];
     const [isClosing, setIsClosing] = useState(false); // For handling close animation
-
     const handleSubmit = () => {
         const reviewData = {
             rating,
             comment,
             reviewDate,
-            scholarshipName: scholarship.scholarshipName,
-            universityName: scholarship.universityName,
-            scholarshipId: scholarship._id,
+            scholarshipName: data.scholarshipName,
+            universityName: data.universityName,
+            scholarshipId: data._id,
             userName: user.displayName,
             userImage: user.photoURL || null,
             userEmail: user.email,
@@ -145,7 +144,7 @@ const ReviewModal = ({ scholarship, user, onClose, onSubmit }) => {
                 className={`bg-white p-6 rounded-lg shadow-lg w-full max-w-lg transform transition-all duration-700 
                 ${isClosing ? "translate-y-10 scale-95 opacity-0" : "translate-y-0 scale-105 opacity-100"}`}
             >
-                <h2 className="text-xl font-semibold mb-4">Add Review</h2>
+                <h2 className="text-xl font-semibold mb-4">{rating && comment ? "Edit Review" : "Add Review"}</h2>
                 <div className="mb-4">
                     <label className="block font-medium mb-1">Rating Point</label>
                     <Rating
@@ -159,7 +158,7 @@ const ReviewModal = ({ scholarship, user, onClose, onSubmit }) => {
                     <textarea
                         className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="4"
-                        value={comment}
+                        defaultValue={comment}
                         onChange={(e) => setComment(e.target.value)}
                     ></textarea>
                 </div>
@@ -175,11 +174,11 @@ const ReviewModal = ({ scholarship, user, onClose, onSubmit }) => {
                 <div className="mb-4 text-left">
                     <p>
                         <strong>Scholarship Name : </strong>
-                        {scholarship.scholarshipName}
+                        {data.scholarshipName}
                     </p>
                     <p>
                         <strong>University Name : </strong>
-                        {scholarship.universityName}
+                        {data.universityName}
                     </p>
                     <p>
                         <strong>User Name : </strong>

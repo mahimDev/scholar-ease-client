@@ -37,6 +37,7 @@ const MyApplication = () => {
         }
     }
     const handleReviewSubmit = async (data) => {
+
         try {
             const res = await axiosSecure.post(`/review`, data)
             if (res.data.massage) {
@@ -122,7 +123,7 @@ const MyApplication = () => {
                                         </button>
                                     </td>
                                     {isModalOpen && <ReviewModal
-                                        scholarship={scholarship}
+                                        data={scholarship}
                                         user={user}
                                         onClose={() => setIsModalOpen(false)}
                                         onSubmit={handleReviewSubmit}
