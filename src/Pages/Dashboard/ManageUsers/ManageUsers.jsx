@@ -1,12 +1,10 @@
 import { toast } from 'react-toastify';
 import useUser from '../../../Hooks/useUser';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import useAdmin from '../../../Hooks/useAdmin';
 
 const ManageUsers = () => {
     const [users, refetch] = useUser()
-    const [isAdmin] = useAdmin()
-    console.log(isAdmin)
+
     const axiosSecure = useAxiosSecure()
     const handleRoleChange = (e, id) => {
         try {

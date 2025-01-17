@@ -5,12 +5,11 @@ import { MdAssignmentAdd, MdManageAccounts } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import useAdmin from "../Hooks/useAdmin";
+import useRole from "../Hooks/useRole";
 
 const DashboardLayout = () => {
-    const [isAdmin] = useAdmin()
-    const isModaretor = false
-    console.log(isAdmin)
+    const [isRole] = useRole()
+    console.log(isRole)
     return (
         <div>
             <ToastContainer />
@@ -21,7 +20,7 @@ const DashboardLayout = () => {
                             <FaHome></FaHome>
                             Home</li></NavLink>
                         <hr className="my-2" />
-                        {isAdmin ?
+                        {isRole === "Admin" ?
                             <ul className="p-5">
                                 {/* admin menu */}
                                 <NavLink to={'/dashboard/adminProfile'}><li className=" p-2  flex items-center gap-2">
@@ -45,9 +44,12 @@ const DashboardLayout = () => {
 
                             </ul>
                             :
-                            isModaretor ?
+                            isRole === "Modaretor" ?
                                 <ul className="p-5">
                                     {/* modaretor menu */}
+                                    <NavLink to={'/dashboard/modaretorProfile'}><li className=" p-2  flex items-center gap-2">
+                                        <RiAdminFill />
+                                        Modaretor Profile</li></NavLink>
                                     <NavLink to={'/dashboard/addScholarship'}><li className=" p-2  flex items-center gap-2">
                                         <MdAssignmentAdd />
                                         Add Scholarship</li></NavLink>
@@ -64,9 +66,8 @@ const DashboardLayout = () => {
 
                                 </ul>
                                 :
-
                                 <ul className="p-5">
-                                    {/* modaretor menu */}
+                                    {/* regular menu */}
                                     <NavLink to={'/dashboard/myProfile'}><li className=" p-2  flex items-center gap-2">
                                         <MdAssignmentAdd />
                                         My Profile</li></NavLink>
@@ -78,7 +79,6 @@ const DashboardLayout = () => {
                                     <NavLink to={'/dashboard/myReview'}><li className=" p-2  flex items-center gap-2">
                                         <FaRegStarHalfStroke />
                                         My Review</li></NavLink>
-
                                 </ul>
                         }
 

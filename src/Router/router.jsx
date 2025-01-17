@@ -12,6 +12,9 @@ import UserSecureRoute from "../Secure/UserSecureRoute";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import MyApplication from "../Pages/Dashboard/MyApplication/MyApplication";
 import MyReviews from "../Pages/Dashboard/MyReviews/MyReviews";
+import AdminRoute from "../Secure/AdminRoute";
+import AdminOrModaretorRoute from "../Secure/AdminOrModaretorRoute";
+import ManageScholarships from "../Pages/Dashboard/ManageScholarships/ManageScholarships";
 
 const router = createBrowserRouter([
     {
@@ -53,13 +56,28 @@ const router = createBrowserRouter([
         children: [
             // admin route
             {
+                path: 'manageUsers',
+                element:
+                    <AdminRoute>
+                        <ManageUsers></ManageUsers>
+                    </AdminRoute>
+            },
+            // admin given permission for modaretor
+            {
                 path: 'addScholarship',
-                element: <AddScholarship></AddScholarship>
+                element:
+                    <AdminOrModaretorRoute>
+                        <AddScholarship></AddScholarship>
+                    </AdminOrModaretorRoute>
             },
             {
-                path: 'manageUsers',
-                element: <ManageUsers></ManageUsers>
+                path: 'manageScholarship',
+                element:
+                    <AdminOrModaretorRoute>
+                        <ManageScholarships></ManageScholarships>
+                    </AdminOrModaretorRoute>
             },
+
             // regular user route
             {
                 path: 'myApplication',

@@ -127,6 +127,7 @@ const MyApplication = () => {
                                         user={user}
                                         onClose={() => setIsModalOpen(false)}
                                         onSubmit={handleReviewSubmit}
+
                                     />}
                                     {isEditModalOpen && <ApplicationEditModal
                                         scholarship={scholarship}

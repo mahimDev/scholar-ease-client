@@ -37,21 +37,21 @@ const Login = () => {
     const handleGoogleBtn = () => {
         googleLogin()
             .then(async (res) => {
-                const resulst = await axiosPublic.post('/user', {
-                    user_name: res?.user?.displayName,
-                    user_email: res?.user?.email,
-                    user_img: res?.user?.photoURL
-                })
-                if (resulst.data.insertedId) {
-                    toast.success('Register with google successful', {
-                        position: 'top-center',
-                        hideProgressBar: true,
-                        autoClose: 2000,
-                        theme: 'colored',
-                    })
-                    navigate(location?.state?.pathname || '/')
-                }
+                // const resulst = await axiosPublic.post('/user', {
+                //     user_name: res?.user?.displayName,
+                //     user_email: res?.user?.email,
+                //     user_img: res?.user?.photoURL
+                // })
+                // if (resulst.data.insertedId) {
+                //     toast.success('Register with google successful', {
+                //         position: 'top-center',
+                //         hideProgressBar: true,
+                //         autoClose: 2000,
+                //         theme: 'colored',
+                //     })
 
+                // }
+                navigate(location?.state?.pathname || '/')
             })
             .catch(err => {
                 toast.error(`${err.code.split('/')[1].split('-').join(' ')}`, {
