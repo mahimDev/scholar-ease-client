@@ -10,7 +10,7 @@ const AdminOrModaretorRoute = ({ children }) => {
     if (loading || isPending) {
         return <FancySpinner></FancySpinner>
     }
-    if (user && isRole === "Modaretor" || isRole === "Admin") {
+    if (user && isRole.role === "Modaretor" || isRole.role === "Admin") {
         return children
     }
     return <Navigate to={'/login'}></Navigate>

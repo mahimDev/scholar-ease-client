@@ -9,7 +9,7 @@ import useRole from "../Hooks/useRole";
 
 const DashboardLayout = () => {
     const [isRole] = useRole()
-    console.log(isRole)
+
     return (
         <div>
             <ToastContainer />
@@ -20,7 +20,7 @@ const DashboardLayout = () => {
                             <FaHome></FaHome>
                             Home</li></NavLink>
                         <hr className="my-2" />
-                        {isRole === "Admin" ?
+                        {isRole?.role === "Admin" ?
                             <ul className="p-5">
                                 {/* admin menu */}
                                 <NavLink to={'/dashboard/adminProfile'}><li className=" p-2  flex items-center gap-2">
@@ -44,7 +44,7 @@ const DashboardLayout = () => {
 
                             </ul>
                             :
-                            isRole === "Modaretor" ?
+                            isRole.role === "Modaretor" ?
                                 <ul className="p-5">
                                     {/* modaretor menu */}
                                     <NavLink to={'/dashboard/modaretorProfile'}><li className=" p-2  flex items-center gap-2">

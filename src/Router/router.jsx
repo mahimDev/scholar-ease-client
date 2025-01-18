@@ -16,6 +16,7 @@ import AdminRoute from "../Secure/AdminRoute";
 import AdminOrModaretorRoute from "../Secure/AdminOrModaretorRoute";
 import ManageScholarships from "../Pages/Dashboard/ManageScholarships/ManageScholarships";
 import ManageReview from "../Pages/Dashboard/ManageReview/ManageReview";
+import ManageApplications from "../Pages/Dashboard/ManageApplications/ManageApplications";
 
 const router = createBrowserRouter([
     {
@@ -83,6 +84,13 @@ const router = createBrowserRouter([
                 element:
                     <AdminOrModaretorRoute>
                         <ManageReview></ManageReview>
+                    </AdminOrModaretorRoute>
+            },
+            {
+                path: 'manageApplications',
+                element:
+                    <AdminOrModaretorRoute>
+                        <ManageApplications></ManageApplications>
                     </AdminOrModaretorRoute>
             },
 

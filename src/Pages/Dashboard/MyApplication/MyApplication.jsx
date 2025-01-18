@@ -20,6 +20,7 @@ const MyApplication = () => {
             return res.data
         }
     })
+    console.log(applications)
     const handleCancelBtn = async (scholarship) => {
         try {
             const res = await axiosSecure.delete(`/application/${scholarship._id}`)
@@ -87,7 +88,7 @@ const MyApplication = () => {
                                 <tr key={index} className="border-t hover:bg-gray-100 text-center">
                                     <td className="py-2 px-4">{scholarship?.universityName}</td>
                                     <td className="py-2 px-4">{scholarship?.universityCity},{scholarship?.universityCountry}</td>
-                                    <td className="py-2 px-4">{scholarship.applicationFeedback || 'No Feedback'}</td>
+                                    <td className="py-2 px-4">{scholarship?.feedback || 'No Feedback'}</td>
 
                                     <td className="py-2 px-4">{scholarship.degree}</td>
                                     <td className="py-2 px-4">${scholarship.applicationFees}</td>

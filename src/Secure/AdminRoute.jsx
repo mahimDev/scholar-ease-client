@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
     if (loading || isPending) {
         return <FancySpinner></FancySpinner>
     }
-    if (user && isRole === "Admin") {
+    if (user && isRole.role === "Admin") {
         return children
     }
 

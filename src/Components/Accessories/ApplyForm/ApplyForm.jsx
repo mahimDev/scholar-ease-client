@@ -42,7 +42,7 @@ const ApplyForm = (props = {}) => {
         setIsProcessing(true)
         const form = new FormData(e.target)
         const formData = Object.fromEntries(form.entries())
-        console.log(formData)
+
         // Handle the image upload
         const imageFile = form.get('photo');
 
@@ -60,7 +60,8 @@ const ApplyForm = (props = {}) => {
             return;
         }
         const applyInfo = { ...formData, userEmail, userName, userId, scholarshipId }
-        console.log(scholarshipId)
+
+        console.log(applyInfo)
         const res = await axiosSecure.post('/application', applyInfo)
 
         if (res.data.insertedId) {
@@ -134,22 +135,33 @@ const ApplyForm = (props = {}) => {
                     {/* University Name (Read-Only) */}
                     <div>
                         <label className="block text-gray-700 font-medium mb-2">University Name</label>
-                        <input type="text" value={data.universityName} className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
+                        <input type="text" name="universityName" value={data.universityName} className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
                     </div>
                     {/* Scholarship Category (Read-Only) */}
                     <div>
                         <label className="block text-gray-700 font-medium mb-2">Scholarship Category</label>
-                        <input type="text" value={data.scholarshipCategory} className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
+                        <input type="text"
+                            name="scholarshipCategory"
+                            value={data.scholarshipCategory}
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200"
+                            readOnly />
                     </div>
                     {/* Application fee (Read-Only) */}
                     <div>
                         <label className="block text-gray-700 font-medium mb-2">Application Fee</label>
-                        <input type="text" value={data.applicationFees} className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
+                        <input
+                            type="text"
+                            name="applicationFees"
+                            value={data.applicationFees}
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
                     </div>
                     {/* Subject Category (Read-Only) */}
                     <div className="md:col-span-2">
                         <label className="block text-gray-700 font-medium mb-2">Subject Category</label>
-                        <input type="text" value={data.subjectCategory} className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
+                        <input type="text"
+                            name="subjectCategory"
+                            value={data.subjectCategory}
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200" readOnly />
                     </div>
                     {/* Submit Button */}
                     <div className="md:col-span-2">

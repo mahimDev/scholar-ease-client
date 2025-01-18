@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
-
+import useRole from '../../../Hooks/useRole';
 const NavBer = () => {
     const { user, userSignOut } = useAuth()
+    const [isRole] = useRole()
+    console.log(isRole)
     const [open, setOpen] = useState(false)
 
     const nav = <>
