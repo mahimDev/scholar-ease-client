@@ -11,7 +11,7 @@ const Payment = () => {
     return (
         <div className="max-w-3xl mx-auto mt-10">
             <Elements stripe={stripePromise}>
-                <CheckoutForm loaderData={loaderData} />
+                <CheckoutForm loaderData={loaderData?.scholarship} />
             </Elements>
         </div>
     );

@@ -116,13 +116,15 @@ const ReviewModal = ({ data, user, onClose, onSubmit }) => {
     const reviewDate = new Date().toISOString().split("T")[0];
     const [isClosing, setIsClosing] = useState(false); // For handling close animation
     const handleSubmit = () => {
+
         const reviewData = {
             rating,
             comment,
             reviewDate,
             scholarshipName: data.scholarshipName,
             universityName: data.universityName,
-            scholarshipId: data._id,
+            scholarshipId: data.scholarshipId,
+            applicationId: data._id,
             userName: user.displayName,
             userImage: user.photoURL || null,
             userEmail: user.email,

@@ -18,7 +18,8 @@ const ScholarshipDetails = () => {
         universityName,
         _id
 
-    } = loaderData
+    } = loaderData?.scholarship
+    console.log(loaderData)
     return (
         <div>
             <div className="w-11/12 mx-auto mt-20 lg:flex gap-20">
@@ -51,6 +52,7 @@ const ScholarshipDetails = () => {
 
 
             </div>
+
         </div>
     );
 };

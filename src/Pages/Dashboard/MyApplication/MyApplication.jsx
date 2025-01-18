@@ -13,6 +13,7 @@ const MyApplication = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [applicationData, setApplicationData] = useState(null)
     const { data: applications = [], refetch } = useQuery({
         queryKey: [user.email, "applications"],
         queryFn: async () => {
@@ -20,7 +21,7 @@ const MyApplication = () => {
             return res.data
         }
     })
-    console.log(applications)
+
     const handleCancelBtn = async (scholarship) => {
         try {
             const res = await axiosSecure.delete(`/application/${scholarship._id}`)
@@ -37,8 +38,12 @@ const MyApplication = () => {
             console.log(err)
         }
     }
+    const handleReviewBtn = (data) => {
+        setApplicationData(data)
+        setIsModalOpen(true)
+    }
     const handleReviewSubmit = async (data) => {
-
+        console.log(data)
         try {
             const res = await axiosSecure.post(`/review`, data)
             if (res.data.massage) {
@@ -58,7 +63,6 @@ const MyApplication = () => {
         } catch (err) {
             console.log(err)
         }
-
         setIsModalOpen(false)
     }
     const handleEditFormSubmit = () => {
@@ -93,7 +97,7 @@ const MyApplication = () => {
                                     <td className="py-2 px-4">{scholarship.degree}</td>
                                     <td className="py-2 px-4">${scholarship.applicationFees}</td>
                                     <td className={`py-2 px-4 font-semibold`}>
-                                        {scholarship.applicationStatus} todo:
+                                        {scholarship?.status || 'pending'}
                                     </td>
                                     <td className="py-2 px-4">
                                         <div className="flex mb-2 justify-around">
@@ -103,12 +107,19 @@ const MyApplication = () => {
                                             >
                                                 Details
                                             </button>
-                                            <button
-                                                onClick={() => setIsEditModalOpen(true)}
-                                                className="bg-green-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-green-600"
-                                            >
-                                                Edit
-                                            </button>
+                                            {scholarship?.status === "panding" || scholarship?.status === undefined ?
+                                                <button
+                                                    onClick={() => setIsEditModalOpen(true)}
+                                                    className="bg-green-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-green-600"
+                                                >
+                                                    Edit
+                                                </button>
+                                                : <button
+                                                    onClick={() => toast.error(`You cannot edit this application while it's ${scholarship?.status}`)}
+                                                    className="bg-green-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-green-600"
+                                                >
+                                                    Edit
+                                                </button>}
                                             <button
                                                 onClick={() => handleCancelBtn(scholarship)}
                                                 className="bg-red-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-red-600"
@@ -117,19 +128,13 @@ const MyApplication = () => {
                                             </button>
                                         </div>
                                         <button
-                                            onClick={() => setIsModalOpen(true)}
+                                            onClick={() => handleReviewBtn(scholarship)}
                                             className="bg-yellow-500 text-white py-1 px-3 rounded-lg w-full hover:bg-yellow-600"
                                         >
                                             Add Review
                                         </button>
                                     </td>
-                                    {isModalOpen && <ReviewModal
-                                        data={scholarship}
-                                        user={user}
-                                        onClose={() => setIsModalOpen(false)}
-                                        onSubmit={handleReviewSubmit}
 
-                                    />}
                                     {isEditModalOpen && <ApplicationEditModal
                                         scholarship={scholarship}
                                         onClose={() => setIsEditModalOpen(false)}
@@ -143,7 +148,13 @@ const MyApplication = () => {
                     </table>
                 </div>
             </div>
+            {isModalOpen && <ReviewModal
+                data={applicationData}
+                user={user}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleReviewSubmit}
 
+            />}
         </div>
     );
 };

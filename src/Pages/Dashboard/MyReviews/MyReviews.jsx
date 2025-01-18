@@ -10,6 +10,7 @@ const MyReviews = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [reviewData, setReviewData] = useState(null);
     const { data: reviews = [], refetch } = useQuery({
         queryKey: [user.email, "review"],
         queryFn: async () => {
@@ -33,8 +34,12 @@ const MyReviews = () => {
         }
 
     }
+    const handleReviewBtn = (data) => {
+        setReviewData(data)
+        setIsModalOpen(true)
+    }
     const handleReviewSubmit = async (data) => {
-        const { rating, comment, scholarshipId: id } = data
+        const { rating, comment, applicationId: id } = data
 
         try {
             const res = await axiosSecure.patch(`/review`, { rating, comment, id })
@@ -84,7 +89,7 @@ const MyReviews = () => {
                                         <div className="flex mb-2 justify-evenly">
 
                                             <button
-                                                onClick={() => setIsModalOpen(true)}
+                                                onClick={() => handleReviewBtn(review)}
                                                 className="bg-green-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-green-600 w-20"
                                             >
                                                 Edit
@@ -98,12 +103,7 @@ const MyReviews = () => {
                                         </div>
 
                                     </td>
-                                    {isModalOpen && <ReviewModal
-                                        data={review}
-                                        user={user}
-                                        onClose={() => setIsModalOpen(false)}
-                                        onSubmit={handleReviewSubmit}
-                                    />}
+
                                 </tr>
 
                             ))}
@@ -111,6 +111,12 @@ const MyReviews = () => {
                     </table>
                 </div>
             </div>
+            {isModalOpen && <ReviewModal
+                data={reviewData}
+                user={user}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleReviewSubmit}
+            />}
         </div>
     );
 };

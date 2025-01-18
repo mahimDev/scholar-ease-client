@@ -11,6 +11,7 @@ const ManageApplications = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false)
     const [isDetailsModal, setIsDetailsModal] = useState(false)
     const [application, setapplication] = useState(null)
+    const [statusValue, setStatusValue] = useState("")
     const handleFeedBack = (application) => {
         setapplication(application)
         setIsFeedbackModalOpen(true)
@@ -18,7 +19,7 @@ const ManageApplications = () => {
     const handleCancleBtn = async (application) => {
         const id = application._id
         try {
-            const res = await axiosSecure.patch(`/application/${id}`)
+            const res = await axiosSecure.patch(`/application/${id}`, { status: "Rejected" })
             console.log(res.data)
             if (res.data.modifiedCount > 0) {
                 toast.success(`Application has been rejected`, {
@@ -36,6 +37,24 @@ const ManageApplications = () => {
         console.log(application)
         setIsDetailsModal(true)
     }
+    const handleChangesStatus = async (e, application) => {
+        const id = application._id
+        const status = e.target.value
+        console.log(status, id)
+        try {
+            const res = await axiosSecure.patch(`/application/${id}`, { status })
+            console.log(res.data)
+            if (res.data.modifiedCount > 0) {
+                toast.success(`Status ${status}`, {
+                    autoClose: 3000,
+                    theme: 'colored',
+                    position: 'top-center'
+                })
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <div>
             <div className="p-6 bg-gray-100">
@@ -49,6 +68,7 @@ const ManageApplications = () => {
                                 <th className="py-2 px-4">SSC Result</th>
                                 <th className="py-2 px-4">Study Gap</th>
                                 <th className="py-2 px-4"> Degree</th>
+                                <th className="py-2 px-4"> Actions</th>
                                 <th className="py-2 px-4">Actions</th>
                             </tr>
                         </thead>
@@ -60,6 +80,17 @@ const ManageApplications = () => {
                                     <td className="py-2 px-4">{application?.sscResult}</td>
                                     <td className="py-2 px-4">{application?.studyGap}</td>
                                     <td className="py-2 px-4">{application?.degree}</td>
+                                    <td className="py-2 px-4">
+                                        <select
+                                            onChange={(e) => handleChangesStatus(e, application)}
+                                            className="p-1 mt-3 rounded-md">
+                                            <option
+                                                className="p-1"
+                                                value="pending">pending</option>
+                                            <option
+                                                className="p-1" value="processing">processing</option>
+                                        </select>
+                                    </td>
 
                                     <td className="py-2 px-4">
                                         <div className="flex mb-2 justify-center">
