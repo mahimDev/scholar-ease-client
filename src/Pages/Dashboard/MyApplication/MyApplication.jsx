@@ -14,6 +14,7 @@ const MyApplication = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [applicationData, setApplicationData] = useState(null)
+    const [editApplicationData, setEditApplicationData] = useState(null)
     const { data: applications = [], refetch } = useQuery({
         queryKey: [user.email, "applications"],
         queryFn: async () => {
@@ -65,10 +66,10 @@ const MyApplication = () => {
         }
         setIsModalOpen(false)
     }
-    const handleEditFormSubmit = () => {
-        setIsEditModalOpen(false);
-    };
-
+    const handleEditBtn = (data) => {
+        setEditApplicationData(data)
+        setIsEditModalOpen(true)
+    }
     return (
         <div>
 
@@ -109,7 +110,7 @@ const MyApplication = () => {
                                             </button>
                                             {scholarship?.status === "panding" || scholarship?.status === undefined ?
                                                 <button
-                                                    onClick={() => setIsEditModalOpen(true)}
+                                                    onClick={() => handleEditBtn(scholarship)}
                                                     className="bg-green-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-green-600"
                                                 >
                                                     Edit
@@ -135,12 +136,7 @@ const MyApplication = () => {
                                         </button>
                                     </td>
 
-                                    {isEditModalOpen && <ApplicationEditModal
-                                        scholarship={scholarship}
-                                        onClose={() => setIsEditModalOpen(false)}
-                                        refetch={refetch}
-                                        onSubmit={handleEditFormSubmit}
-                                    />}
+
                                 </tr>
 
                             ))}
@@ -154,6 +150,12 @@ const MyApplication = () => {
                 onClose={() => setIsModalOpen(false)}
                 onSubmit={handleReviewSubmit}
 
+            />}
+            {isEditModalOpen && <ApplicationEditModal
+                scholarship={editApplicationData}
+                onClose={() => setIsEditModalOpen(false)}
+                refetch={refetch}
+                setIsEditModalOpen={setIsEditModalOpen}
             />}
         </div>
     );

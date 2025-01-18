@@ -44,7 +44,7 @@ const ManageUsers = () => {
             toast.error(err.response.data.error)
         }
     }
-
+    console.log(users)
     return (
         <div>
             <h1 className="text-4xl font-semibold mt-5 text-center ">Total Users {users?.length}</h1>
@@ -78,7 +78,7 @@ const ManageUsers = () => {
 
                                         <select
                                             onChange={(e) => handleRoleChange(e, user._id)}
-                                            defaultValue={user.user_role}
+                                            defaultValue={user?.user_role}
                                             name="subjectCategory"
                                             className={`p-2  rounded 
                                                 ${user.user_role ===
@@ -87,7 +87,7 @@ const ManageUsers = () => {
                                         >
                                             <option
                                                 disabled
-                                            >{user.user_role}</option>
+                                            >{user?.user_role || "user"}</option>
                                             <option className='' value="Admin">Admin</option>
                                             <option value="Modaretor">Modaretor</option>
                                             <option value="user">user</option>

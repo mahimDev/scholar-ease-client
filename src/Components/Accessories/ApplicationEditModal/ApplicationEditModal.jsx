@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
-const ApplicationEditModal = ({ scholarship, onClose, onSubmit, refetch }) => {
+const ApplicationEditModal = ({ scholarship, onClose, setIsEditModalOpen, refetch }) => {
     const [isClosing, setIsClosing] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const axiosSecure = useAxiosSecure()
@@ -48,7 +48,7 @@ const ApplicationEditModal = ({ scholarship, onClose, onSubmit, refetch }) => {
                 autoClose: 3000
             })
             refetch()
-            onSubmit()
+            setIsEditModalOpen(false)
         }
         setIsProcessing(false)
     }
@@ -178,6 +178,7 @@ const ApplicationEditModal = ({ scholarship, onClose, onSubmit, refetch }) => {
                         </div>
                         <div className="flex justify-end space-x-4 m">
                             <button
+                                type="button"
                                 className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-300"
                                 onClick={handleClose}
                             >
