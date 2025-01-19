@@ -13,8 +13,8 @@ const MyApplication = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [applicationData, setApplicationData] = useState(null)
-    const [editApplicationData, setEditApplicationData] = useState(null)
+    const [applicationData, setApplicationData] = useState({})
+    const [editApplicationData, setEditApplicationData] = useState({})
     const { data: applications = [], refetch } = useQuery({
         queryKey: [user.email, "applications"],
         queryFn: async () => {

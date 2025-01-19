@@ -10,7 +10,7 @@ const MyReviews = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [reviewData, setReviewData] = useState(null);
+    const [reviewData, setReviewData] = useState({});
     const { data: reviews = [], refetch } = useQuery({
         queryKey: [user.email, "review"],
         queryFn: async () => {

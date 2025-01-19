@@ -7,6 +7,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 const AddScholarship = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const date = new Date()
     const handleImageUpload = async (image) => {
         const formData = new FormData();
         formData.append('image', image);

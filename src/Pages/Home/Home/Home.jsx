@@ -1,11 +1,12 @@
 
 import Banner from "../../../Components/Shared/Banner/Banner";
+import Featured from "../Featured/Featured";
 
 const Home = () => {
     return (
         <div>
-
             <Banner></Banner>
+            <Featured></Featured>
         </div>
     );
 };

@@ -19,7 +19,6 @@ const ScholarshipCart = (props = {}) => {
         universityImage,
         universityName,
         _id
-
     } = data
     return (
         <div>
@@ -30,6 +29,8 @@ const ScholarshipCart = (props = {}) => {
                         <div className="into">
                             <h1 className='card2h1 text-2xl font-semibold '>{universityName}</h1>
                             <p className='card2p' >{scholarshipName}
+                            </p>
+                            <p className='card2p' >${applicationFees}
                             </p>
                             <p className='card2p' ><Rating style={{ maxWidth: 100 }} value={5} />
                             </p>

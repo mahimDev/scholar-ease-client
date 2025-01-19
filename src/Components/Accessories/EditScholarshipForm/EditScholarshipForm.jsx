@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
-const EditScholarshipForm = ({ scholarship, onSubmit, refetch, onClose }) => {
+const EditScholarshipForm = ({ scholarship, setIsModalOpen, refetch, onClose }) => {
     const [isClosing, setIsClosing] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const axiosSecure = useAxiosSecure()
@@ -48,7 +48,7 @@ const EditScholarshipForm = ({ scholarship, onSubmit, refetch, onClose }) => {
                 autoClose: 3000
             })
             refetch()
-            onSubmit()
+            setIsModalOpen(false)
         }
         setIsProcessing(false)
     }

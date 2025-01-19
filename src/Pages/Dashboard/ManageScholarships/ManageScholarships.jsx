@@ -10,8 +10,10 @@ const ManageScholarships = () => {
     const axiosSecure = useAxiosSecure()
     const [scholarships, refetch] = useScholarship()
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const handleEditFormSubmit = () => {
-        setIsModalOpen(false)
+    const [scholarshipData, setScholarhipData] = useState({})
+    const handleEditFormSubmitBtn = (data) => {
+        setScholarhipData(data)
+        setIsModalOpen(true)
     }
     const handleCancelBtn = async (scholarship) => {
         try {
@@ -64,7 +66,7 @@ const ManageScholarships = () => {
                                                 Details
                                             </button>
                                             <button
-                                                onClick={() => setIsModalOpen(true)}
+                                                onClick={() => handleEditFormSubmitBtn(scholarship)}
                                                 className="bg-green-500 text-white py-1 px-3 rounded-lg mr-2 hover:bg-green-600"
                                             >
                                                 Edit
@@ -78,12 +80,7 @@ const ManageScholarships = () => {
                                         </div>
 
                                     </td>
-                                    {isModalOpen && <EditScholarshipForm
-                                        scholarship={scholarship}
-                                        onClose={() => setIsModalOpen(false)}
-                                        refetch={refetch}
-                                        onSubmit={handleEditFormSubmit}
-                                    />}
+
 
                                 </tr>
 
@@ -92,7 +89,12 @@ const ManageScholarships = () => {
                     </table>
                 </div>
             </div>
-
+            {isModalOpen && <EditScholarshipForm
+                scholarship={scholarshipData}
+                onClose={() => setIsModalOpen(false)}
+                refetch={refetch}
+                setIsModalOpen={setIsModalOpen}
+            />}
         </div>
     );
 };

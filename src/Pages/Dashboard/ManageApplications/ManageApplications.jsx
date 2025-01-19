@@ -10,7 +10,7 @@ const ManageApplications = () => {
     const axiosSecure = useAxiosSecure()
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false)
     const [isDetailsModal, setIsDetailsModal] = useState(false)
-    const [application, setapplication] = useState(null)
+    const [application, setapplication] = useState({})
     const [statusValue, setStatusValue] = useState("")
     const handleFeedBack = (application) => {
         setapplication(application)
