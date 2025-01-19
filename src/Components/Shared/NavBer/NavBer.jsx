@@ -52,14 +52,14 @@ const NavBer = () => {
                             onClick={() => setOpen(!open)}>
                             {
                                 open === true ?
-                                    <img className="w-10" src="https://img.icons8.com/?size=100&id=26140&format=png&color=FFFFFF" alt="" />
+                                    <img className="w-10" src="https://img.icons8.com/?size=100&id=26140&format=png&color=10B981" alt="" />
                                     :
-                                    <img className="w-10" src="https://img.icons8.com/?size=100&id=26141&format=png&color=FFFFFF" alt="" />
+                                    <img className="w-10" src="https://img.icons8.com/?size=100&id=26141&format=png&color=10B981" alt="" />
 
                             }
 
                         </div>
-                        <ul className={`md:flex absolute z-[500] md:static bg-darkGray text-white p-3 duration-1000 left-0 rounded-br-xl  ${open ? `${user ? 'top-[95px]' : ' '} ` : '-top-60'} `}>
+                        <ul className={`md:flex absolute z-[500] md:static bg-secondary text-white p-3 duration-1000 left-0 rounded-xl  ${open ? `${user ? 'top-[80px]' : ' '} ` : '-top-60'} `}>
                             {
                                 nav
                             }
@@ -82,7 +82,7 @@ const NavBer = () => {
                                     src={user?.photoUrl}
                                     alt="avatar"
                                 />
-                                <div className={`group-hover:block hidden rounded-xl absolute right-0 top-12 p-5 bg-white/70 backdrop-blur-2xl text-darkGray`}>
+                                <div className={`group-hover:block hidden rounded-xl absolute right-0 top-12 p-5 bg-secondary/80 backdrop-blur-2xl text-darkGray`}>
                                     <h1 className="mb-2">{user?.displayName}</h1>
                                     <h1 className="my-2">{user?.email}</h1>
                                     <button

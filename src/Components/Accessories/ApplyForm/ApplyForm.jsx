@@ -53,13 +53,7 @@ const ApplyForm = (props = {}) => {
 
             if (uploadedImageUrl) {
                 formData.photo = uploadedImageUrl;
-            } else {
-                toast.error('Image upload failed. Cannot proceed.');
-                return;
             }
-        } else {
-            toast.error('Please select an image to upload.');
-            return;
         }
         const applyInfo = {
             ...formData, userEmail, userName, userId, scholarshipId, applicationDeadline
