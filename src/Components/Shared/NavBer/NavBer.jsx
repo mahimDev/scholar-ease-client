@@ -13,9 +13,18 @@ const NavBer = () => {
         <NavLink to={'/'}> <li>Home</li></NavLink>
         <NavLink to={'allScholarship'}><li>All Scholarship</li></NavLink>
 
-        {user &&
-            <NavLink to={'dashboard'}><li>Dashboard</li></NavLink>
+        {user && isRole.role === "Admin" ?
+            <NavLink to={'/dashboard/adminProfile'}><li>Dashboard</li></NavLink>
+            :
+            isRole.role === "Modaretor" ?
+
+                <NavLink to={'/dashboard/modaretorProfile'}><li>Dashboard</li></NavLink>
+                :
+                <NavLink to={'/dashboard'}><li>Dashboard</li></NavLink>
+
+
         }
+
 
     </>
     const handleLogout = () => {

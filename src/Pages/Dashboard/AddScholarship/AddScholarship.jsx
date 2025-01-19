@@ -7,7 +7,8 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 const AddScholarship = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
-    const date = new Date()
+    const postdDate = new Date().toLocaleDateString("en-GB")
+
     const handleImageUpload = async (image) => {
         const formData = new FormData();
         formData.append('image', image);
@@ -48,7 +49,7 @@ const AddScholarship = () => {
             return;
         }
 
-        const res = await axiosSecure.post('/scholarship', formData)
+        const res = await axiosSecure.post('/scholarship', { ...formData, postdDate })
         if (res.data.insertedId) {
             toast.success(`Scholarship added successfully`, {
                 autoClose: 2000

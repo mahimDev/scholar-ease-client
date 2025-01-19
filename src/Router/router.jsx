@@ -17,6 +17,9 @@ import AdminOrModaretorRoute from "../Secure/AdminOrModaretorRoute";
 import ManageScholarships from "../Pages/Dashboard/ManageScholarships/ManageScholarships";
 import ManageReview from "../Pages/Dashboard/ManageReview/ManageReview";
 import ManageApplications from "../Pages/Dashboard/ManageApplications/ManageApplications";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import ModaretoHome from "../Pages/Dashboard/ModaretoHome/ModaretoHome";
+import NotFoundPage from "../Pages/Error/Error";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +61,13 @@ const router = createBrowserRouter([
         children: [
             // admin route
             {
+                path: 'adminProfile',
+                element:
+                    <AdminRoute>
+                        <AdminHome />
+                    </AdminRoute>
+            },
+            {
                 path: 'manageUsers',
                 element:
                     <AdminRoute>
@@ -65,6 +75,13 @@ const router = createBrowserRouter([
                     </AdminRoute>
             },
             // admin given permission for modaretor
+            {
+                path: 'modaretorProfile',
+                element:
+                    <AdminOrModaretorRoute>
+                        <ModaretoHome />
+                    </AdminOrModaretorRoute>
+            },
             {
                 path: 'addScholarship',
                 element:
@@ -113,6 +130,10 @@ const router = createBrowserRouter([
         path: 'register',
         element: <Register></Register>
     },
+    {
+        path: "*",
+        element: <NotFoundPage />
+    }
 
 ])
 

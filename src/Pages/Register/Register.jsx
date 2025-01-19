@@ -12,6 +12,14 @@ const Register = () => {
         e.preventDefault();
         const form = new FormData(e.target)
         const userInfo = Object.fromEntries(form.entries())
+        if (userInfo.password.length < 6) {
+            return toast.error("Password must be less than 6 characters.");
+        } else if (!/[A-Z]/.test(userInfo.password)) {
+            return toast.error("Password should not contain capital letters.");
+        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(userInfo.password)) {
+            return toast.error("Password should not contain special characters like @, #, or $.");
+        }
+
         createUser(userInfo.email, userInfo.password)
             .then((res) => {
                 // update user name and phot url

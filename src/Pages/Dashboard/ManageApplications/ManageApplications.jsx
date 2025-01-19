@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import ApplicationDtsModal from "../../../Components/Accessories/ApplicationDtsModal/ApplicationDtsModal";
 
 const ManageApplications = () => {
-    const [applications] = useApplications()
+    const [applications, setSortValue, sortValue] = useApplications()
     const axiosSecure = useAxiosSecure()
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false)
     const [isDetailsModal, setIsDetailsModal] = useState(false)
@@ -16,6 +16,7 @@ const ManageApplications = () => {
         setapplication(application)
         setIsFeedbackModalOpen(true)
     }
+    console.log(sortValue)
     const handleCancleBtn = async (application) => {
         const id = application._id
         try {
@@ -59,6 +60,17 @@ const ManageApplications = () => {
         <div>
             <div className="p-6 bg-gray-100">
                 <h2 className="text-4xl font-semibold mb-6 text-center">Total Applications : {applications.length}</h2>
+                <div className="flex justify-end my-4">
+                    {/* Sorting and Filtering dropdown */}
+                    <select
+                        onChange={(e) => setSortValue(e.target.value)}
+                        className="border p-3 rounded"
+                    >
+                        <option disabled value="">Select Option</option>
+                        <option value="appliedDate">Sort by Applied Date</option>
+                        <option value="scholarshipDeadline">Sort by Scholarship Deadline</option>
+                    </select>
+                </div>
                 <div className="overflow-x-auto">
                     <table className="w-full table-auto bg-white rounded-lg shadow-lg">
                         <thead >
@@ -67,7 +79,7 @@ const ManageApplications = () => {
                                 <th className="py-2 px-4">Phone</th>
                                 <th className="py-2 px-4">SSC Result</th>
                                 <th className="py-2 px-4">Study Gap</th>
-                                <th className="py-2 px-4"> Degree</th>
+                                <th className="py-2 px-4">Deadline</th>
                                 <th className="py-2 px-4"> Actions</th>
                                 <th className="py-2 px-4">Actions</th>
                             </tr>
@@ -79,7 +91,7 @@ const ManageApplications = () => {
                                     <td className="py-2 px-4">{application?.phone}</td>
                                     <td className="py-2 px-4">{application?.sscResult}</td>
                                     <td className="py-2 px-4">{application?.studyGap}</td>
-                                    <td className="py-2 px-4">{application?.degree}</td>
+                                    <td className="py-2 px-4">{application?.postdDate}</td>
                                     <td className="py-2 px-4">
                                         <select
                                             onChange={(e) => handleChangesStatus(e, application)}

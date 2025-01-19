@@ -35,6 +35,7 @@ const ManageScholarships = () => {
         <div>
             <div className="p-6 bg-gray-100">
                 <h2 className="text-4xl font-semibold mb-6 text-center">Total Scholarships : {scholarships.length}</h2>
+
                 <div className="overflow-x-auto">
                     <table className="w-full table-auto bg-white rounded-lg shadow-lg">
                         <thead >

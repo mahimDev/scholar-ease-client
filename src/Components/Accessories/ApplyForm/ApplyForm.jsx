@@ -10,7 +10,8 @@ const ApplyForm = (props = {}) => {
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const [isProcessing, setIsProcessing] = useState(false);
-    const [userData, setUserData] = useState()
+    const [userData, setUserData] = useState({})
+    console.log(data)
     useEffect(() => {
         axiosSecure.get(`/user/${user?.email}`)
             .then(res => {
@@ -20,7 +21,8 @@ const ApplyForm = (props = {}) => {
     const userEmail = user?.email
     const userName = user?.displayName
     const userId = userData?._id
-    const scholarshipId = (data?._id)
+    const scholarshipId = data?._id
+    const applicationDeadline = data?.applicationDeadline
     const handleImageUpload = async (image) => {
         const formData = new FormData();
         formData.append('image', image);
@@ -59,7 +61,9 @@ const ApplyForm = (props = {}) => {
             toast.error('Please select an image to upload.');
             return;
         }
-        const applyInfo = { ...formData, userEmail, userName, userId, scholarshipId }
+        const applyInfo = {
+            ...formData, userEmail, userName, userId, scholarshipId, applicationDeadline
+        }
 
         console.log(applyInfo)
         const res = await axiosSecure.post('/application', applyInfo)

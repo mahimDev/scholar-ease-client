@@ -66,19 +66,19 @@ const DashboardLayout = () => {
 
                                 </ul>
                                 :
-                                <ul className="p-5">
+                                <ul className="md:p-5">
                                     {/* regular menu */}
                                     <NavLink to={'/dashboard/myProfile'}><li className=" p-2  flex items-center gap-2">
                                         <MdAssignmentAdd />
-                                        My Profile</li></NavLink>
+                                        Profile</li></NavLink>
 
                                     <NavLink to={'/dashboard/myApplication'}><li className=" p-2  flex items-center gap-2">
                                         <AiFillTool />
-                                        My Application</li></NavLink>
+                                        Application</li></NavLink>
 
                                     <NavLink to={'/dashboard/myReview'}><li className=" p-2  flex items-center gap-2">
                                         <FaRegStarHalfStroke />
-                                        My Review</li></NavLink>
+                                        Review</li></NavLink>
                                 </ul>
                         }
 
