@@ -11,7 +11,7 @@ const ApplyForm = (props = {}) => {
     const axiosSecure = useAxiosSecure()
     const [isProcessing, setIsProcessing] = useState(false);
     const [userData, setUserData] = useState({})
-    console.log(data)
+
     useEffect(() => {
         axiosSecure.get(`/user/${user?.email}`)
             .then(res => {
@@ -32,9 +32,9 @@ const ApplyForm = (props = {}) => {
                 formData
             );
             return res.data.data.display_url;
-        } catch (error) {
-            console.error('Error uploading image:', error);
-            toast.error('Failed to upload the image. Please try again.');
+        } catch {
+
+
             return null;
         }
     };
@@ -59,7 +59,7 @@ const ApplyForm = (props = {}) => {
             ...formData, userEmail, userName, userId, scholarshipId, applicationDeadline
         }
 
-        console.log(applyInfo)
+
         const res = await axiosSecure.post('/application', applyInfo)
 
         if (res.data.insertedId) {

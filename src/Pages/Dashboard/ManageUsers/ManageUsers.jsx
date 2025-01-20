@@ -20,14 +20,14 @@ const ManageUsers = () => {
                 })
 
         } catch (err) {
-            console.log(err)
+
         }
     }
     const handleDeleteUser = async (_id) => {
         try {
             await axiosSecure.delete(`/user/${_id}`)
                 .then(res => {
-                    console.log(res.data)
+
                     if (res.data.deletedCount) {
                         toast.success(`User deleted successfully`, {
                             autoClose: 2000,
@@ -40,11 +40,11 @@ const ManageUsers = () => {
 
 
         } catch (err) {
-            console.log(err)
+
             toast.error(err.response.data.error)
         }
     }
-    console.log(users)
+
     return (
         <div>
             <h1 className="text-4xl font-semibold mt-5 text-center ">Total Users {users?.length}</h1>

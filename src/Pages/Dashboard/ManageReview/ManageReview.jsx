@@ -15,7 +15,7 @@ const ManageReview = () => {
     const handledeletelBtn = async (review) => {
         try {
             const res = await axiosSecure.delete(`/review/${review._id}`)
-            console.log(res.data)
+
             if (res.data.deletedCount > 0) {
                 toast.success(`${review.userName} review has been deleted `, {
                     autoClose: 3000,
@@ -25,7 +25,7 @@ const ManageReview = () => {
                 refetch()
             }
         } catch (err) {
-            console.log(err)
+
         }
 
     }

@@ -40,7 +40,7 @@ const ApplicationEditModal = ({ scholarship, onClose, setIsEditModalOpen, refetc
         }
 
         const res = await axiosSecure.put(`/application/${scholarship._id}`, formData)
-        console.log(res.data)
+
         if (res.data.modifiedCount > 0) {
             toast.success('application updated successful', {
                 theme: 'colored',

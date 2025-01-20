@@ -30,7 +30,7 @@ const MyReviews = () => {
                 refetch()
             }
         } catch (err) {
-            console.log(err)
+
         }
 
     }
@@ -43,7 +43,7 @@ const MyReviews = () => {
 
         try {
             const res = await axiosSecure.patch(`/review`, { rating, comment, id })
-            console.log(res.data)
+
             if (res.data.modifiedCount > 0) {
                 toast.success(`Review edit success`, {
                     autoClose: 3000,
@@ -53,7 +53,7 @@ const MyReviews = () => {
                 refetch()
             }
         } catch (err) {
-            console.log(err)
+
         }
 
         setIsModalOpen(false)

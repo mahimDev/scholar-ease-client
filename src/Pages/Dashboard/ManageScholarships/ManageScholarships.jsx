@@ -18,7 +18,7 @@ const ManageScholarships = () => {
     const handleCancelBtn = async (scholarship) => {
         try {
             const res = await axiosSecure.delete(`/scholarship/${scholarship._id}`)
-            console.log(res.data)
+
             if (res.data.deletedCount > 0) {
                 toast.success(`${scholarship?.scholarshipName}  deleted`, {
                     autoClose: 3000,
@@ -28,10 +28,10 @@ const ManageScholarships = () => {
                 refetch()
             }
         } catch (err) {
-            console.log(err)
+
         }
     }
-    console.log(scholarships)
+
     return (
         <div>
             <div className="p-6 bg-gray-100">

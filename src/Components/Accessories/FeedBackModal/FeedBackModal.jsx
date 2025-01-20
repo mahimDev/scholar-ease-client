@@ -12,10 +12,10 @@ const FeedBackModal = (props = {}) => {
         const form = new FormData(e.target)
         const feedback = form.get('feedback')
         const id = application._id
-        console.log(feedback)
+
         try {
             const res = await axiosSecure.patch(`/application`, { feedback, id })
-            console.log(res.data)
+
             if (res.data.modifiedCount > 0) {
                 toast.success(`FeedBack given completed`, {
                     autoClose: 3000,
@@ -25,7 +25,7 @@ const FeedBackModal = (props = {}) => {
 
             }
         } catch (err) {
-            console.log(err)
+
         }
 
         setIsFeedbackModalOpen(false)

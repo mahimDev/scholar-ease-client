@@ -52,7 +52,7 @@ const CheckoutForm = ({ loaderData }) => {
         });
 
         if (error) {
-            console.log(error)
+
             toast.error(error.message, { autoClose: 3000, theme: "colored" });
             setIsProcessing(false);
             return;
@@ -74,7 +74,7 @@ const CheckoutForm = ({ loaderData }) => {
         } else {
             // console.log("Payment successful:", paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                console.log("Payment successful")
+
                 setOpen(true)
                 toast.success("Payment successful", {
                     autoClose: 3000,

@@ -26,7 +26,7 @@ const MyApplication = () => {
     const handleCancelBtn = async (scholarship) => {
         try {
             const res = await axiosSecure.delete(`/application/${scholarship._id}`)
-            console.log(res.data)
+
             if (res.data.deletedCount > 0) {
                 toast.success(`${scholarship?.scholarshipName} deleted`, {
                     autoClose: 3000,
@@ -36,7 +36,7 @@ const MyApplication = () => {
                 refetch()
             }
         } catch (err) {
-            console.log(err)
+
         }
     }
     const handleReviewBtn = (data) => {
@@ -44,7 +44,7 @@ const MyApplication = () => {
         setIsModalOpen(true)
     }
     const handleReviewSubmit = async (data) => {
-        console.log(data)
+
         try {
             const res = await axiosSecure.post(`/review`, data)
             if (res.data.massage) {
@@ -62,7 +62,7 @@ const MyApplication = () => {
                 })
             }
         } catch (err) {
-            console.log(err)
+
         }
         setIsModalOpen(false)
     }

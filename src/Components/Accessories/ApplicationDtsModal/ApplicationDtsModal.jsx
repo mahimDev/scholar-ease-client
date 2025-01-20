@@ -1,7 +1,7 @@
 
 const ApplicationDtsModal = (props = {}) => {
     const { application, setIsDetailsModal } = props || {}
-    console.log(application)
+
     return (
         <div>
             <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-1000 `}>

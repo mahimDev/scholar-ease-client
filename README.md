@@ -1,10 +1,8 @@
-# ScholarEase
+# [ScholarEase](https://scholar-ease-c79fe.web.app/)
 
 ### Purpose
 
 The AllScholarship project is designed to help users easily search, filter, and browse through a comprehensive list of available scholarships. It simplifies the process of finding scholarships by providing search functionality, pagination, and detailed scholarship cards.
-
-### Live Site
 
 #### Key Features
 

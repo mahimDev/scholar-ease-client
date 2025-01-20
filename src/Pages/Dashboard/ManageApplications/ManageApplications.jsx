@@ -16,12 +16,12 @@ const ManageApplications = () => {
         setapplication(application)
         setIsFeedbackModalOpen(true)
     }
-    console.log(sortValue)
+
     const handleCancleBtn = async (application) => {
         const id = application._id
         try {
             const res = await axiosSecure.patch(`/application/${id}`, { status: "Rejected" })
-            console.log(res.data)
+
             if (res.data.modifiedCount > 0) {
                 toast.success(`Application has been rejected`, {
                     autoClose: 3000,
@@ -30,21 +30,21 @@ const ManageApplications = () => {
                 })
             }
         } catch (err) {
-            console.log(err)
+
         }
     }
     const handleDetailsBtn = (application) => {
         setapplication(application)
-        console.log(application)
+
         setIsDetailsModal(true)
     }
     const handleChangesStatus = async (e, application) => {
         const id = application._id
         const status = e.target.value
-        console.log(status, id)
+
         try {
             const res = await axiosSecure.patch(`/application/${id}`, { status })
-            console.log(res.data)
+
             if (res.data.modifiedCount > 0) {
                 toast.success(`Status ${status}`, {
                     autoClose: 3000,
@@ -53,7 +53,7 @@ const ManageApplications = () => {
                 })
             }
         } catch (err) {
-            console.log(err)
+
         }
     }
     return (
