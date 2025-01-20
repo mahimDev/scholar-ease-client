@@ -118,7 +118,7 @@ const AllScholarship = () => {
                 ) : data?.result?.length ? (
                     <div className="w-10/12 mx-auto">
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {data.result.map((scholarship) => (
+                            {data?.result?.map((scholarship) => (
                                 <ScholarshipCart key={scholarship._id} data={scholarship} />
                             ))}
                         </div>

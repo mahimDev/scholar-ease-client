@@ -21,15 +21,16 @@ const useAxiosSecure = () => {
     // interceptor 401 and 403 status
     axiosSecure.interceptors.response.use(function (response) {
         return response
-    }, async (error) => {
-        const status = error.response.status
-        if (status === 401 || status === 403) {
-            await userSignOut()
-            navigate('/login')
-        }
+    },
+        async (error) => {
+            // const status = error.response.status
+            // if (status === 401 || status === 403) {
+            //     await userSignOut()
+            //     navigate('/login')
+            // }
 
-        return Promise.reject(error)
-    })
+            return Promise.reject(error)
+        })
     return axiosSecure
 };
 

@@ -27,10 +27,10 @@ const ScholarshipCart = (props = {}) => {
     useEffect(() => {
         axiosPublic.get(`/scholarship/${_id}`)
             .then(res => {
-                setReview(res.data.reviwes)
+                setReview(res.data?.reviwes)
             })
     }, [axiosPublic, _id])
-    console.log()
+
     return (
         <div>
             <div className="card2Section ">
@@ -43,7 +43,7 @@ const ScholarshipCart = (props = {}) => {
                             </p>
                             <p className='card2p' >Fee $ {applicationFees}
                             </p>
-                            <p className='card2p' ><Rating style={{ maxWidth: 100 }} value={review.length} />
+                            <p className='card2p' ><Rating style={{ maxWidth: 100 }} value={review?.length} />
                             </p>
                             <div className='bg-darkGray/40 card2p rounded text-center'>
 

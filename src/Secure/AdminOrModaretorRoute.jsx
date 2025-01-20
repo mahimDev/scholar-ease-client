@@ -13,7 +13,7 @@ const AdminOrModaretorRoute = ({ children }) => {
     if (user && isRole.role === "Modaretor" || isRole.role === "Admin") {
         return children
     }
-    return <Navigate to={'/login'}></Navigate>
+    return <Navigate to={'/login'} replace></Navigate>
 };
 
 export default AdminOrModaretorRoute;

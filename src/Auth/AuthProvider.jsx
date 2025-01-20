@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
     }
     // update user 
     const updateUserProfile = (name, photo) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         })
@@ -36,7 +37,9 @@ const AuthProvider = ({ children }) => {
     // stay user
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
+            console.log(currentUser)
+            if (currentUser?.email) {
+
                 // get token and store client
                 const userInfo = { email: currentUser.email }
                 axiosPublic.post('/jwt', userInfo)
@@ -51,7 +54,7 @@ const AuthProvider = ({ children }) => {
                 localStorage.removeItem('access-token')
             }
             setUser(currentUser)
-
+            setLoading(false);
         })
         return () => {
             unSubscribe()

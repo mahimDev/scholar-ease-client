@@ -30,7 +30,7 @@ const ScholarshipDetails = () => {
         _id
 
     } = loaderData?.scholarship
-    console.log(loaderData.reviwes)
+    console.log(loaderData)
     return (
         <div>
             <div className="w-11/12 mx-auto mt-20 lg:flex gap-20">
@@ -84,7 +84,7 @@ const ScholarshipDetails = () => {
                     className="mySwiper"
                 >
 
-                    {loaderData?.reviwes.map(review => <div key={review._id}>
+                    {loaderData?.reviwes?.map(review => <div key={review?._id}>
                         <SwiperSlide>
                             <div className={` rounded-md lex justify-center text-center  p-5 bg-[url('${review?.userImage}')] bg-cover bg-no-repeat `}>
                                 <div >

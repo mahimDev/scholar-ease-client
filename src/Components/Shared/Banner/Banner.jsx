@@ -19,11 +19,11 @@ const Banner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <div className='  backdrop-blur-sm h-[85vh] bg-darkGray/20    '>
+                    <div className='  backdrop-blur-sm h-[85vh] bg-secondary/10  mt-10  '>
                         <div className='lg:flex'>
                             <div className='  flex-1  lg:pt-64 pt-10'>
                                 <div>
-                                    <h1 className=" lg:text-7xl text-5xl font-semibold text-lightGray ml-20 "> Discover Your Perfect Stay. </h1>
+                                    <h1 className=" lg:text-7xl text-5xl font-semibold text-lightGray ml-20 "> Scholarship Navigator Platform </h1>
 
                                     <div>
                                         <div className='w-full h-full bg-secondary absolute z-0 top-[80%]   rounded-tr-full'>
@@ -42,30 +42,22 @@ const Banner = () => {
                                     transition={{ delay: 1, duration: 5, repeat: Infinity }}
                                     animate={{ y: [0, 15, 0], x: [0, 10, 0] }}
                                 >
-                                    <img className='w-full rounded-2xl  max-h-[80vh] object-cover mt-5' src="https://i.ibb.co.com/M1QT7LY/prsentSm.png" alt="" />
+                                    <img className='w-full  rounded-2xl  max-h-[80vh] object-cover mt-5' src="https://i.ibb.co.com/M1QT7LY/prsentSm.png" alt="" />
                                 </motion.div>
                             </div>
                         </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className='lg:flex  backdrop-blur-md h-[85vh] bg-white/20   '>
+                    <div className='  backdrop-blur-md h-[85vh] bg-black/20   '>
 
-                        <div className='flex-1'>
-                            <h1 className="  text-[#1A1A1A] ">   </h1>
-                            <div className='  mr-10 lg:mr-0 lg:text-7xl  text-center lg:mt-56 pt-10 text-3xl font-bold '>
-                                Hike More, <br /> <span className='ml-20'>Worry Less</span>
-                            </div>
-                        </div>
-                        <div className='flex-1'>
-                            <img className='w-full max-h-[100vh] object-cover mt-5' src="https://i.ibb.co.com/J7B6VsG/Pngtree-take-a-hike-typography-vitage-5870349.png" alt="" />
-                        </div>
+                        <img className='w-full h-full max-h-[100vh] object-cover mt-5' src="https://i.ibb.co.com/0nWCqXg/employees-using-laptop-800x450.jpg" alt="" />
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className='  backdrop-blur-md h-[85vh] bg-white/20   '>
 
-                        <div className='lg:flex'>
+                        <div className=''>
                             {/* <div className='flex-1'>
                                 <h1 className="  text-[#1A1A1A] ">   </h1>
                                 <div className='App   lg:text-7xl  ml-20 lg:mt-56 text-2xl '>
@@ -94,9 +86,9 @@ const Banner = () => {
                                 </div>
 
                             </div> */}
-                            <div className='flex-1'>
-                                <img className='w-full max-h-[80vh] object-cover mt-5' src="https://i.ibb.co.com/h77bWQF/Pngtree-hiking-sticker-with-a-man-12232316.png" alt="" />
-                            </div>
+
+                            <img className='w-full max-h-[85vh] h-full object-cover mt-5' src="https://i.ibb.co.com/Jc2qpw4/woman-in-wheelchair-working-800x450.jpg" alt="" />
+
                         </div>
 
                     </div>

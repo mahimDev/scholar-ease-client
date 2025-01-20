@@ -11,7 +11,7 @@ const Featured = () => {
                 setScholarships(res.data)
             })
     }, [axiosPublic])
-    console.log(scholarships)
+
     return (
         <div className="w-10/12 mx-auto">
             <h1 className="text-6xl font-bold mt-28 mb-10 text-center">Top Scholarship</h1>
