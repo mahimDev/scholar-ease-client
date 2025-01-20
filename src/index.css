@@ -22,3 +22,7 @@
 .animate-bounce {
   animation: bounce 1s ease-in-out infinite;
 }
+
+.selectedBtn {
+  background: #b01616;
+}

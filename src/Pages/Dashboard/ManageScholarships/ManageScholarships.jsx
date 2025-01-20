@@ -31,6 +31,7 @@ const ManageScholarships = () => {
             console.log(err)
         }
     }
+    console.log(scholarships)
     return (
         <div>
             <div className="p-6 bg-gray-100">
@@ -49,7 +50,7 @@ const ManageScholarships = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {scholarships?.map((scholarship, index) => (
+                            {scholarships.map((scholarship, index) => (
                                 <tr key={index} className="border-t hover:bg-gray-100 text-center">
                                     <td className="py-2 px-4">{scholarship?.scholarshipName}</td>
                                     <td className="py-2 px-4">{scholarship?.universityName},{scholarship?.universityCountry}</td>

@@ -98,6 +98,9 @@ const ManageApplications = () => {
                                             className="p-1 mt-3 rounded-md">
                                             <option
                                                 className="p-1"
+                                            >{application?.status || "select status"}</option>
+                                            <option
+                                                className="p-1"
                                                 value="pending">pending</option>
                                             <option
                                                 className="p-1" value="processing">processing</option>

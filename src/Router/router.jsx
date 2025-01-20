@@ -20,6 +20,7 @@ import ManageApplications from "../Pages/Dashboard/ManageApplications/ManageAppl
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import ModaretoHome from "../Pages/Dashboard/ModaretoHome/ModaretoHome";
 import NotFoundPage from "../Pages/Error/Error";
+import Profile from "../Pages/Dashboard/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
             {
                 path: 'myApplication',
                 element: <MyApplication></MyApplication>
+            },
+            {
+                path: 'myProfile',
+                element: <Profile />
             },
             {
                 path: 'myReview',

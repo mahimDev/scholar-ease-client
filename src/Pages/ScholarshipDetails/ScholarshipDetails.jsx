@@ -51,7 +51,7 @@ const ScholarshipDetails = () => {
                             <p className="mt-3"><strong>Application Deadline :</strong> <br /> {applicationDeadline}</p>
                             <p className="mt-3 "><strong>Scholarship Description : </strong> <br /> {'description'}</p>
                         </div>
-                        <p className="text-[#d5a403] text-4xl font-semibold rounded-md  w-32"> ${applicationFees}</p>
+                        <p className="text-[#d5a403] text-4xl font-semibold rounded-md  w-32"> Fees :<br /> $ {applicationFees}</p>
                     </div>
                     <div className=" mt-10">
                         <Link to={`/payment/${_id}`}>

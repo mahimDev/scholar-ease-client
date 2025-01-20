@@ -62,7 +62,7 @@ const ManageUsers = () => {
                     </thead>
                     <tbody>
                         {/*  */}
-                        {users.map(user =>
+                        {users?.map(user =>
                             <tr key={user._id} className="hover:bg-gray-50 border-b transition duration-300">
                                 <td className="py-4 px-4 flex justify-start">
                                     <img src={user?.user_img} className="h-16 w-16 object-cover rounded  bg-gray-300" />
@@ -86,7 +86,7 @@ const ManageUsers = () => {
                                             required
                                         >
                                             <option
-                                                disabled
+                                                disabled selected
                                             >{user?.user_role || "user"}</option>
                                             <option className='' value="Admin">Admin</option>
                                             <option value="Modaretor">Modaretor</option>

@@ -8,7 +8,7 @@ const useScholarship = () => {
     const { data: scholarships = [], refetch } = useQuery({
         queryKey: [searchValue, "scholarships"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/scholarship?search=${searchValue}`)
+            const res = await axiosPublic.get(`/scholarships`)
             return res.data
         }
     })

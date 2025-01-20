@@ -16,7 +16,7 @@ const DashboardLayout = () => {
             <div >
                 <div className="flex">
                     < div className="w-1/5 bg-secondary min-h-screen">
-                        <NavLink to={'/'}><li className=" p-5  flex items-center gap-2">
+                        <NavLink to={'/'}><li className=" ml-3 mt-5 text-lg p-5  flex items-center gap-2">
                             <FaHome></FaHome>
                             Home</li></NavLink>
                         <hr className="my-2" />

@@ -24,21 +24,11 @@ const Banner = () => {
                             <div className='  flex-1  lg:pt-64 pt-10'>
                                 <div>
                                     <h1 className=" lg:text-7xl text-5xl font-semibold text-lightGray ml-20 "> Discover Your Perfect Stay. </h1>
-                                    {/* <div className='flex items-center gap-4 justify-center mt-10'>
-                                        <h1 className='text-xl font-semibold'>Go To</h1>
-                                        <Link to={'/rooms'}>
-                                            <button className='py-2 pl-3 pr-6  bg-darkGray text-lightGray rounded-r-3xl '>Room</button>
-                                        </Link>
-                                    </div> */}
+
                                     <div>
                                         <div className='w-full h-full bg-secondary absolute z-0 top-[80%]   rounded-tr-full'>
                                             <h1 className=" lg:text-5xl flex items-center text-3xl font-semibold  lg:ml-20 mt-10">30% Off for Winter
-                                                <div className='flex items-center gap-4 justify-center ml-10'>
-                                                    <h1 className='text-lg pt-3   font-semibold'>Go To</h1>
-                                                    <Link to={'/rooms'}>
-                                                        <button className='py-2 pl-3 pr-6 text-lg bg-lightGray text-darkGray rounded-r-3xl '>Room</button>
-                                                    </Link>
-                                                </div>
+
                                             </h1>
 
                                         </div>
