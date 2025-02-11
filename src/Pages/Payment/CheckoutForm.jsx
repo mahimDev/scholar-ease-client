@@ -72,7 +72,7 @@ const CheckoutForm = ({ loaderData }) => {
             console.error("Confirm error", confirmError);
             toast.error(confirmError.message, { autoClose: 3000, theme: "colored" });
         } else {
-            // console.log("Payment successful:", paymentIntent);
+
             if (paymentIntent.status === 'succeeded') {
 
                 setOpen(true)

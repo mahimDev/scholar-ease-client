@@ -7,7 +7,7 @@ const MainLayout = () => {
     return (
         <div>
             <ToastContainer />
-            <nav>
+            <nav className="sticky top-0 z-50">
                 <NavBer></NavBer>
             </nav>
             <main className="min-h-[80vh]">

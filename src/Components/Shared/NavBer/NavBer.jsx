@@ -40,8 +40,9 @@ const NavBer = () => {
             })
     }
     return (
-        <div className="top-0 mt-8 z-[50] md:w-11/12 mx-auto  sticky md:rounded-full  bg-background text-text    py-4 ">
-            <div className="flex justify-between w-11/12 mx-auto items-center  py-2 px-3 rounded-full backdrop-blur-xl">
+
+        <div className=" mx-auto   md:rounded-full  bg-background text-text    py-4 ">
+            <div className=" flex justify-between w-11/12 mx-auto items-center  py-2 px-3 rounded-full backdrop-blur-xl">
 
                 <div className="md:hidden block ">
                     <nav>
@@ -105,9 +106,6 @@ const NavBer = () => {
                 </div>
             </div>
         </div>
-
-
-
     );
 };
 

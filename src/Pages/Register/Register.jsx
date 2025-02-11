@@ -33,7 +33,7 @@ const Register = () => {
                             user_password: userInfo?.password
                         }
                         const resulst = await axiosPublic.post('/user', userData)
-                        console.log(resulst.data.insertedId)
+
                         if (resulst.data.insertedId) {
                             toast.success('Register successfully', {
                                 position: 'top-center',
@@ -45,7 +45,7 @@ const Register = () => {
                         }
                     })
                     .catch(() => {
-                        console.log("Error")
+
                     })
 
             })
