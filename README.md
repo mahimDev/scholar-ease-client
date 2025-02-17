@@ -1,8 +1,4 @@
-Here’s a **professional README.md** for your **ScholarEase** project:
-
----
-
-### **📌 ScholarEase**
+# **📌 ScholarEase**
 
 🚀 **Live Website:** [ScholarEase](https://scholar-ease-c79fe.web.app/)
 
@@ -59,8 +55,8 @@ ScholarEase is a **comprehensive scholarship management platform** that helps us
 ### **🔹 Clone the Repository**
 
 ```sh
-git clone https://github.com/your-username/scholarease.git
-cd scholarease
+git clone https://github.com/mahimDev/scholar-ease-client.git
+cd scholar-ease-client
 ```
 
 ### **🔹 Install Dependencies**

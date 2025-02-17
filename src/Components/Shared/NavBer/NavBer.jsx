@@ -11,6 +11,7 @@ const NavBer = () => {
     const nav = <>
         <NavLink to={'/'}> <li>Home</li></NavLink>
         <NavLink to={'allScholarship'}><li>All Scholarship</li></NavLink>
+        <NavLink to={'about'}><li>About</li></NavLink>
 
         {user ? isRole.role === "Admin" ?
             <NavLink to={'/dashboard/adminProfile'}><li>Dashboard</li></NavLink>
@@ -41,8 +42,8 @@ const NavBer = () => {
     }
     return (
 
-        <div className=" mx-auto   md:rounded-full  bg-background text-text    py-4 ">
-            <div className=" flex justify-between w-11/12 mx-auto items-center  py-2 px-3 rounded-full backdrop-blur-xl">
+        <div className=" mx-auto     bg-background/20 text-text    py-4 ">
+            <div className=" flex justify-between w-11/12 mx-auto items-center  py-2 px-3 ">
 
                 <div className="md:hidden block ">
                     <nav>
@@ -66,7 +67,7 @@ const NavBer = () => {
                     </nav>
                 </div>
                 <div className="hidden md:block ">
-                    <ul className="md:flex border-2 py-2 px-4 rounded-full gap-4 text-xl  font-semibold ">
+                    <ul className="md:flex border-2 py-2 px-4 rounded-md gap-4 text-xl  font-semibold  backdrop-blur-lg">
                         {nav}
                     </ul>
                 </div>
@@ -96,10 +97,10 @@ const NavBer = () => {
 
                             <div className="flex gap-2">
                                 <Link to={'/login'}>
-                                    <button className={`border-2 border-lightGray  py-1 px-3 font-semibold rounded-md $`}
+                                    <button className={`border-2 border-lightGray  py-1 px-3 font-semibold rounded-md backdrop-blur-lg`}
                                     >Login</button></Link>
                                 <Link to={'/register'}>
-                                    <button className={`border-2 border-lightGray  py-1 px-3 font-semibold rounded-md $`}
+                                    <button className={`border-2 border-lightGray  py-1 px-3 font-semibold rounded-md  backdrop-blur-lg`}
                                     >Register</button></Link>
                             </div>
                     }

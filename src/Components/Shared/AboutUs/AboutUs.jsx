@@ -1,4 +1,5 @@
 import { FaArrowAltCircleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
     return (
@@ -24,7 +25,7 @@ const AboutUs = () => {
 
                     <p className=" p-2  mt-4 text-text/60">Our team is composed of passionate, highly skilled professionals dedicated to excellence in every aspect of their work. With expertise spanning diverse fields, our members bring years of experience, innovative thinking, and a shared commitment to achieving outstanding results. Together, we foster a collaborative environment where creativity thrives, challenges are embraced, and goals are consistently exceeded. Each team member plays a pivotal role in ensuring that we deliver unparalleled quality and value, making us a trusted choice for our clients and partners</p>
                     <div className=" mt-7">
-                        <button className="text-lg font-semibold bg-secondary/20 text-secondary  py-2 px-5 hover:gap-3 duration-500 flex items-center gap-2 ">About Us More <FaArrowAltCircleRight /></button>
+                        <Link to="/about"> <button className="text-lg font-semibold bg-secondary/20 text-secondary  py-2 px-5 hover:gap-3 duration-500 flex items-center gap-2 ">About Us More <FaArrowAltCircleRight /></button></Link>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import ModaretoHome from "../Pages/Dashboard/ModaretoHome/ModaretoHome";
 import NotFoundPage from "../Pages/Error/Error";
 import Profile from "../Pages/Dashboard/Profile/Profile";
+import About from "../Pages/About/About";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: 'allScholarship',
                 element: <AllScholarship></AllScholarship>
+            },
+            {
+                path: 'about',
+                element: <About />
             },
             {
                 path: 'scholarshipDetails/:id',
