@@ -4,7 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import useRole from '../../../Hooks/useRole';
 const NavBer = () => {
-    const { user, userSignOut } = useAuth()
+    const { user, userSignOut, isDark, setIsDark } = useAuth()
     const [isRole] = useRole()
     const [open, setOpen] = useState(false)
 
@@ -40,6 +40,7 @@ const NavBer = () => {
 
             })
     }
+    console.log(isDark)
     return (
 
         <div className=" mx-auto     bg-background/20 text-text    py-4 ">
@@ -71,7 +72,12 @@ const NavBer = () => {
                         {nav}
                     </ul>
                 </div>
-                <div>
+
+                <div className="flex gap-4 items-center">
+                    {/* toggle button */}
+                    <button onClick={() => setIsDark((prev) => !prev)} className={`flex h-6 w-14 items-center rounded-full border border-secondary   ${isDark ? 'bg-secondary/50' : null}`}>
+                        <div className={`size-5 rounded-full bg-secondary duration-300 ${isDark ? 'translate-x-8' : 'translate-x-1'}`}></div>
+                    </button>
                     {
                         user ?
                             <div className="group relative">

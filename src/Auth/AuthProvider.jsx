@@ -4,9 +4,13 @@ import auth from "../Firebase/firebase";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 const googleProvider = new GoogleAuthProvider()
 export const AuthContext = createContext(null)
+const getSystemTheme = () => window.matchMedia("(prefers-color-scheme: dark)").matches;
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [isDark, setIsDark] = useState(getSystemTheme());
+
     const axiosPublic = useAxiosPublic()
     // create user 
     const createUser = (email, password) => {
@@ -60,9 +64,14 @@ const AuthProvider = ({ children }) => {
             unSubscribe()
         }
     }, [axiosPublic])
+
+
+
     const authInfo = {
         user,
         loading,
+        isDark,
+        setIsDark,
         createUser,
         loginUser,
         userSignOut,

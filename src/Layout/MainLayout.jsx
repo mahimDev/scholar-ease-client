@@ -2,10 +2,12 @@ import { Outlet } from "react-router-dom";
 import NavBer from "../Components/Shared/NavBer/NavBer";
 import Footer from "../Components/Shared/Footer/Footer";
 import { ToastContainer } from "react-toastify";
+import useAuth from "../Hooks/useAuth";
 
 const MainLayout = () => {
+    const { isDark } = useAuth()
     return (
-        <div>
+        <div className={`${isDark ? "bg-black" : ""}`}>
             <ToastContainer />
             <nav className="sticky top-0 z-50">
                 <NavBer></NavBer>
