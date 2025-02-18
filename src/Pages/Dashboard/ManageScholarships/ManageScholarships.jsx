@@ -15,6 +15,7 @@ const ManageScholarships = () => {
         setScholarhipData(data)
         setIsModalOpen(true)
     }
+    console.log(scholarshipData)
     const handleCancelBtn = async (scholarship) => {
         try {
             const res = await axiosSecure.delete(`/scholarship/${scholarship._id}`)

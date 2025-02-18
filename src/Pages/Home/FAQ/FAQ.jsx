@@ -1,59 +1,70 @@
 import { useState } from "react";
 
 const FAQ = () => {
-    // add your array of object data
-    const dataArr = [{
-        question: "How do I apply for a scholarship?",
-        answer: "You can apply by creating an account, searching for scholarships, and submitting the required documents through the application portal.",
-    },
-    {
-        question: "Is ScholarEase free to use?",
-        answer: "Yes! ScholarEase is completely free for students looking for scholarships.",
-    },
-    {
-        question: "Can I apply for multiple scholarships?",
-        answer: "Yes, you can apply for as many scholarships as you qualify for.",
-    },
-    {
-        question: "How will I know if my application is accepted?",
-        answer: "You will receive an email notification, and you can track your application status in your dashboard.",
-    },];
-
-    // toggle state and function
+    const faqData = [
+        {
+            question: "How do I apply for a scholarship?",
+            answer: "You can apply by creating an account, searching for scholarships, and submitting the required documents through the application portal.",
+        },
+        {
+            question: "Is ScholarEase free to use?",
+            answer: "Yes! ScholarEase is completely free for students looking for scholarships.",
+        },
+        {
+            question: "Can I apply for multiple scholarships?",
+            answer: "Yes, you can apply for as many scholarships as you qualify for.",
+        },
+        {
+            question: "How will I know if my application is accepted?",
+            answer: "You will receive an email notification, and you can track your application status in your dashboard.",
+        },
+    ];
 
     const [isOpen, setIsOpen] = useState(null);
-    const toggle = (idx) => {
-        setIsOpen((prevIdx) => (prevIdx === idx ? null : idx))
-    };
+    const toggleFAQ = (idx) => setIsOpen(isOpen === idx ? null : idx);
+
     return (
-        <div className="md:flex  w-11/12 mx-auto">
-            <div className="flex-1">
+        <div className="w-11/12 mx-auto max-w-4xl py-12">
+            {/* FAQ Title */}
+            <h1 className="text-4xl md:text-5xl font-semibold text-gray-800 text-center mb-8">
+                Frequently Asked Questions
+            </h1>
 
-                <h1 className="text-6xl font-semibold">frequently asked question</h1>
-
-            </div>
-            <div className="w-full flex-1  rounded-lg bg-white p-3 *:mix-blend-difference ">
-                {dataArr.map((PerAccordion, idx) => (
-                    <div key={idx} className="border-b border-gray-500/50 py-3 last-of-type:border-b-0">
-                        <button onClick={() => toggle(idx)} className="flex h-full w-full items-center justify-between font-medium text-white outline-none">
-                            <span>{PerAccordion.question}</span>
-                            <span className="rounded-full p-2">
-                                <svg className="ml-8 size-3 shrink-0 fill-white" xmlns="http://www.w3.org/2000/svg">
-                                    <rect y="5" width="12" height="2" rx="1" className={`origin-center transform transition duration-200 ease-out ${isOpen === idx && '!rotate-180'}`} />
-                                    <rect y="5" width="12" height="2" rx="1" className={`origin-center rotate-90 transform transition duration-200 ease-out ${isOpen === idx && '!rotate-180'}`} />
-                                </svg>
+            {/* FAQ Container */}
+            <div className="bg-white shadow-lg rounded-lg p-6">
+                {faqData.map((faq, idx) => (
+                    <div key={idx} className="border-b last:border-none py-3">
+                        {/* Question Button */}
+                        <button
+                            onClick={() => toggleFAQ(idx)}
+                            className="flex justify-between w-full text-lg font-medium text-gray-700 hover:text-secondary transition-all"
+                        >
+                            {faq.question}
+                            <span className="p-2">
+                                {isOpen === idx ? (
+                                    <svg className="size-5 text-secondary" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M10 8a1 1 0 011-1h7a1 1 0 110 2h-7a1 1 0 01-1-1z" clipRule="evenodd" />
+                                    </svg>
+                                ) : (
+                                    <svg className="size-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+                                    </svg>
+                                )}
                             </span>
                         </button>
-                        <div className={`grid overflow-hidden text-zinc-400 transition-all duration-300 ease-in-out ${isOpen === idx ? 'grid-rows-[1fr] pb-1 pt-4 opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                            <div className="overflow-hidden pr-4 text-sm">{PerAccordion.answer}</div>
+
+                        {/* Answer Section */}
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ${isOpen === idx ? "max-h-40 opacity-100 py-2" : "max-h-0 opacity-0"
+                                }`}
+                        >
+                            <p className="text-gray-600">{faq.answer}</p>
                         </div>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };
 
 export default FAQ;
-

@@ -12,7 +12,9 @@ const NavBer = () => {
         <NavLink to={'/'}> <li>Home</li></NavLink>
         <NavLink to={'allScholarship'}><li>All Scholarship</li></NavLink>
         <NavLink to={'about'}><li>About</li></NavLink>
-
+        {user &&
+            <NavLink to={'blog'}><li>Blog</li></NavLink>
+        }
         {user ? isRole.role === "Admin" ?
             <NavLink to={'/dashboard/adminProfile'}><li>Dashboard</li></NavLink>
             :

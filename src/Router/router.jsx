@@ -22,6 +22,8 @@ import ModaretoHome from "../Pages/Dashboard/ModaretoHome/ModaretoHome";
 import NotFoundPage from "../Pages/Error/Error";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import About from "../Pages/About/About";
+import Overview from "../Pages/Dashboard/Overview/Overview";
+import Blog from "../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +58,13 @@ const router = createBrowserRouter([
                     </UserSecureRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/scholarship/${params.id}`)
             },
+            {
+                path: 'blog',
+                element:
+                    <UserSecureRoute>
+                        <Blog />
+                    </UserSecureRoute>,
+            },
         ]
     },
     {
@@ -71,6 +80,13 @@ const router = createBrowserRouter([
                 element:
                     <AdminRoute>
                         <AdminHome />
+                    </AdminRoute>
+            },
+            {
+                path: 'overview',
+                element:
+                    <AdminRoute>
+                        <Overview />
                     </AdminRoute>
             },
             {
