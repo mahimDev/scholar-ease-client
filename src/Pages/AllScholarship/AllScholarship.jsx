@@ -6,6 +6,7 @@ import { useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const AllScholarship = () => {
+    const [sorting, setSorting] = useState("")
     const [searchValue, setSearchValue] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
     const limit = 6;
@@ -13,10 +14,10 @@ const AllScholarship = () => {
 
     // Fetch scholarship data using React Query
     const { data = {}, refetch, isLoading } = useQuery({
-        queryKey: [searchValue, currentPage], // Dependency array for query
+        queryKey: [searchValue, currentPage, sorting], // Dependency array for query
         queryFn: async () => {
             const res = await axiosPublic.get(
-                `/scholarship?search=${searchValue}&page=${currentPage + 1}&limit=${limit}`
+                `/scholarship?search=${searchValue}&page=${currentPage + 1}&limit=${limit}&sorting=${sorting}`
             );
             return res.data;
         },
@@ -27,7 +28,7 @@ const AllScholarship = () => {
     const totalItems = data?.totalitems || 0;
     const numberOfPages = Math.ceil(totalItems / limit);
     const pages = Array.from({ length: numberOfPages }, (_, i) => i);
-
+    console.log(data?.result)
     return (
         <div>
             {/* Search Bar */}
@@ -45,7 +46,14 @@ const AllScholarship = () => {
                     />
                 </div>
             </div>
-
+            <div className="w-11/12 mx-auto">
+                {/* sorting */}
+                <select onChange={(e) => setSorting(e.target.value)} className="text-darkGray border py-2 rounded pl-2 mb-4  md:mb-0">
+                    <option disabled>Select</option>
+                    <option value="asc">ascending price</option>
+                    <option value="des">descending price</option>
+                </select>
+            </div>
             {/* Scholarship List */}
             <div className="min-h-[90vh]">
                 {isLoading ? (
@@ -56,6 +64,7 @@ const AllScholarship = () => {
                             {data?.result?.map((scholarship) => (
                                 <ScholarshipCart key={scholarship._id} data={scholarship} />
                             ))}
+
                         </div>
 
                         {/* Pagination Buttons */}

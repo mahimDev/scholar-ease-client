@@ -7,7 +7,7 @@ import useAuth from "../Hooks/useAuth";
 const MainLayout = () => {
     const { isDark } = useAuth()
     return (
-        <div className={`${isDark ? "bg-black" : ""}`}>
+        <div className={`${isDark ? "bg-gray-200" : ""}`}>
             <ToastContainer />
             <nav className="sticky top-0 z-50">
                 <NavBer></NavBer>
