@@ -15,9 +15,9 @@ const Featured = () => {
     }, [axiosPublic])
 
     return (
-        <div className="w-10/12 mx-auto">
-            <h1 className="text-6xl font-bold mt-28 mb-10 text-center">Top Scholarship</h1>
-            <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
+        <div className="w-10/12 mx-auto mt-32">
+            <h1 className="text-6xl font-bold  text-center">Top Scholarship</h1>
+            <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 mt-20 ">
                 {scholarships.map(scholarship => <ScholarshipCart
                     key={scholarship._id}
                     data={scholarship}

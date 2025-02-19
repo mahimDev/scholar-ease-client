@@ -1,4 +1,4 @@
-
+import useAuth from '../../Hooks/useAuth';
 const blogPosts = [
     {
         id: 1,
@@ -27,20 +27,21 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+    const { isDark } = useAuth()
     return (
         <div className="max-w-6xl mx-auto px-4 py-12">
             {/* Page Header */}
-            <h1 className="text-4xl font-bold text-gray-800 text-center mb-10">
+            <h1 className={`text-4xl font-bold  text-center mb-10 ${isDark ? "text-gray-300" : "text-gray-800"}`}>
                 Our Latest Blog Posts
             </h1>
 
             {/* Blog Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {blogPosts.map((post) => (
-                    <div key={post.id} className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div key={post.id} className={`${isDark ? "bg-gray-800" : "bg-white"} shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300`}>
                         <img src={post.image} alt={post.title} className="w-full h-56 object-cover" />
                         <div className="p-6">
-                            <h2 className="text-2xl font-semibold text-gray-800">{post.title}</h2>
+                            <h2 className={`text-2xl font-semibold ${isDark ? "text-gray-300" : "text-gray-800"}`}>{post.title}</h2>
                             <p className="text-gray-600 text-sm mt-2">{post.excerpt}</p>
                             <div className="flex items-center justify-between mt-4 text-gray-500 text-sm">
                                 <span>{post.author}</span>

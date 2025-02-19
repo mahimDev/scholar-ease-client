@@ -6,9 +6,10 @@ import { RiAdminFill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import useRole from "../Hooks/useRole";
-
+import useAuth from "../Hooks/useAuth"
 const DashboardLayout = () => {
     const [isRole] = useRole()
+    const { isDark } = useAuth()
 
     return (
         <div>
@@ -87,7 +88,7 @@ const DashboardLayout = () => {
 
                     </div>
                     {/*  */}
-                    <div className="w-full p-10">
+                    <div className={`w-full p-10 ${isDark ? "bg-gray-900 text-gray-300" : ""}`}>
                         <Outlet></Outlet>
                     </div>
                 </div>

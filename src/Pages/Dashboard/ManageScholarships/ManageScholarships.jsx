@@ -4,9 +4,11 @@ import { useState } from "react";
 import EditScholarshipForm from "../../../Components/Accessories/EditScholarshipForm/EditScholarshipForm";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
 
 const ManageScholarships = () => {
     const navigate = useNavigate()
+    const { isDark } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [scholarships, refetch] = useScholarship()
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,11 +37,11 @@ const ManageScholarships = () => {
 
     return (
         <div>
-            <div className="p-6 bg-gray-100">
+            <div className={`p-6  ${isDark ? "" : "bg-gray-100"}`}>
                 <h2 className="text-4xl font-semibold mb-6 text-center">Total Scholarships : {scholarships.length}</h2>
 
                 <div className="overflow-x-auto">
-                    <table className="w-full table-auto bg-white rounded-lg shadow-lg">
+                    <table className="w-full table-auto  rounded-lg shadow-lg">
                         <thead >
                             <tr className="bg-blue-600 text-white ">
                                 <th className="py-2 px-4">Scholarship  Name</th>
@@ -52,7 +54,7 @@ const ManageScholarships = () => {
                         </thead>
                         <tbody>
                             {scholarships.map((scholarship, index) => (
-                                <tr key={index} className="border-t hover:bg-gray-100 text-center">
+                                <tr key={index} className="border-t hover:bg-gray-500 text-center">
                                     <td className="py-2 px-4">{scholarship?.scholarshipName}</td>
                                     <td className="py-2 px-4">{scholarship?.universityName},{scholarship?.universityCountry}</td>
                                     <td className="py-2 px-4">{scholarship.subjectCategory}</td>

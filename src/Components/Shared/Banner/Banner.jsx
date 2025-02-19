@@ -19,7 +19,7 @@ const Banner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <div className='  backdrop-blur-sm h-[85vh] bg-secondary/10  mt-10  '>
+                    <div className='  backdrop-blur-sm h-[85vh] bg-secondary/10   '>
                         <div className='lg:flex'>
                             <div className='  flex-1  lg:pt-64 pt-10'>
                                 <div>
@@ -42,7 +42,7 @@ const Banner = () => {
                                     transition={{ delay: 1, duration: 5, repeat: Infinity }}
                                     animate={{ y: [0, 15, 0], x: [0, 10, 0] }}
                                 >
-                                    <img className='w-full  rounded-2xl  max-h-[80vh] object-cover mt-5' src="https://i.ibb.co.com/M1QT7LY/prsentSm.png" alt="" />
+                                    <img className='w-full  rounded-2xl  max-h-[80vh] object-cover ' src="https://i.ibb.co.com/M1QT7LY/prsentSm.png" alt="" />
                                 </motion.div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@ const Banner = () => {
                 <SwiperSlide>
                     <div className='  backdrop-blur-md h-[85vh] bg-black/20   '>
 
-                        <img className='w-full h-full max-h-[100vh] object-cover mt-5' src="https://i.ibb.co.com/0nWCqXg/employees-using-laptop-800x450.jpg" alt="" />
+                        <img className='w-full h-full max-h-[100vh] object-cover ' src="https://i.ibb.co.com/twXryhRx/Blue-and-White-Modern-Study-Abroad-Program-Banner-Landscape.png" alt="" />
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -87,12 +87,13 @@ const Banner = () => {
 
                             </div> */}
 
-                            <img className='w-full max-h-[85vh] h-full object-cover mt-5' src="https://i.ibb.co.com/Jc2qpw4/woman-in-wheelchair-working-800x450.jpg" alt="" />
+                            <img className='w-full max-h-[85vh] h-full object-cover ' src="https://i.ibb.co.com/Jc2qpw4/woman-in-wheelchair-working-800x450.jpg" alt="" />
 
                         </div>
 
                     </div>
                 </SwiperSlide>
+
             </Swiper>
         </div>
     );

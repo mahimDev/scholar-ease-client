@@ -5,7 +5,6 @@ import FancySpinner from "../Components/Accessories/FancySpinner/FancySpinner";
 const UserSecureRoute = ({ children }) => {
     const { user, loading } = useAuth()
     const { pathname } = useLocation()
-
     if (loading) {
         return <FancySpinner></FancySpinner>
     }

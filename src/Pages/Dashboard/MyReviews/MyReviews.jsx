@@ -60,7 +60,7 @@ const MyReviews = () => {
     }
     return (
         <div>
-            <div className="p-6 bg-gray-100">
+            <div className="p-6 ">
                 <h2 className="text-4xl font-semibold mb-6 text-center">Your Applied Scholarship Review : {reviews.length}</h2>
                 <div className="overflow-x-auto">
                     <table className="w-full table-auto bg-white rounded-lg shadow-lg">
@@ -76,7 +76,7 @@ const MyReviews = () => {
                         </thead>
                         <tbody>
                             {reviews?.map((review, index) => (
-                                <tr key={index} className="border-t hover:bg-gray-100 text-center">
+                                <tr key={index} className="border-t hover:bg-gray-500 text-center">
                                     <td className="py-2 px-4">{review?.scholarshipName}</td>
                                     <td className="py-2 px-4">{review?.universityName
                                     }</td>

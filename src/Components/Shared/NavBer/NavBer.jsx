@@ -45,7 +45,7 @@ const NavBer = () => {
     console.log(isDark)
     return (
 
-        <div className=" mx-auto     bg-background/20 text-text    py-4 ">
+        <div className={` mx-auto     ${isDark ? "bg-background/20 text-white" : "bg-background/20 text-text"}    py-4 `}>
             <div className=" flex justify-between w-11/12 mx-auto items-center  py-2 px-3 ">
 
                 <div className="md:hidden block ">

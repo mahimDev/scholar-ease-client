@@ -1,11 +1,13 @@
+import useAuth from "../../Hooks/useAuth";
 
 const About = () => {
+    const { isDark } = useAuth()
     return (
         <div>
-            <div className="min-h-screen bg-gray-100 text-gray-900 flex flex-col items-center p-6">
+            <div className={`min-h-screen  ${isDark ? "text-gray-300" : "text-gray-900"} flex flex-col items-center p-6`}>
                 {/* Hero Section */}
                 <section className="w-full max-w-4xl text-center py-12">
-                    <h1 className="text-4xl font-bold text-gray-800">About ScholarEase</h1>
+                    <h1 className="text-4xl font-bold ">About ScholarEase</h1>
                     <p className="mt-4 text-lg text-gray-600">
                         Empowering students worldwide by providing access to scholarships.
                     </p>

@@ -4,6 +4,7 @@ import FeedBackModal from "../../../Components/Accessories/FeedBackModal/FeedBac
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import ApplicationDtsModal from "../../../Components/Accessories/ApplicationDtsModal/ApplicationDtsModal";
+import useAuth from "../../../Hooks/useAuth";
 
 const ManageApplications = () => {
     const [applications, setSortValue, sortValue] = useApplications()
@@ -12,6 +13,7 @@ const ManageApplications = () => {
     const [isDetailsModal, setIsDetailsModal] = useState(false)
     const [application, setapplication] = useState({})
     const [statusValue, setStatusValue] = useState("")
+    const { isDark } = useAuth()
     const handleFeedBack = (application) => {
         setapplication(application)
         setIsFeedbackModalOpen(true)
@@ -58,13 +60,13 @@ const ManageApplications = () => {
     }
     return (
         <div>
-            <div className="p-6 bg-gray-100">
+            <div className="p-6 ">
                 <h2 className="text-4xl font-semibold mb-6 text-center">Total Applications : {applications.length}</h2>
                 <div className="flex justify-end my-4">
                     {/* Sorting and Filtering dropdown */}
                     <select
                         onChange={(e) => setSortValue(e.target.value)}
-                        className="border p-3 rounded"
+                        className={`border p-3 rounded ${isDark ? "bg-gray-800" : ""}`}
                     >
                         <option disabled value="">Select Option</option>
                         <option value="appliedDate">Sort by Applied Date</option>
@@ -72,7 +74,7 @@ const ManageApplications = () => {
                     </select>
                 </div>
                 <div className="overflow-x-auto">
-                    <table className="w-full table-auto bg-white rounded-lg shadow-lg">
+                    <table className="w-full table-auto  rounded-lg shadow-lg">
                         <thead >
                             <tr className="bg-blue-600 text-white ">
                                 <th className="py-2 px-4">  Name</th>
@@ -86,7 +88,7 @@ const ManageApplications = () => {
                         </thead>
                         <tbody>
                             {applications?.map((application, index) => (
-                                <tr key={index} className="border-t hover:bg-gray-100 text-center">
+                                <tr key={index} className="border-t hover:bg-gray-500 text-center">
                                     <td className="py-2 px-4">{application?.userName}</td>
                                     <td className="py-2 px-4">{application?.phone}</td>
                                     <td className="py-2 px-4">{application?.sscResult}</td>
@@ -95,7 +97,7 @@ const ManageApplications = () => {
                                     <td className="py-2 px-4">
                                         <select
                                             onChange={(e) => handleChangesStatus(e, application)}
-                                            className="p-1 mt-3 rounded-md">
+                                            className={`p-1 mt-3 rounded-md ${isDark ? "bg-gray-800 " : ""}`}>
                                             <option
                                                 className="p-1"
                                             >{application?.status || "select status"}</option>

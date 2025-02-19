@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useAuth from "../../../Hooks/useAuth";
 
 const FAQ = () => {
     const faqData = [
@@ -22,22 +23,22 @@ const FAQ = () => {
 
     const [isOpen, setIsOpen] = useState(null);
     const toggleFAQ = (idx) => setIsOpen(isOpen === idx ? null : idx);
-
+    const { isDark } = useAuth()
     return (
-        <div className="w-11/12 mx-auto max-w-4xl py-12">
+        <div className="w-11/12 mx-auto max-w-4xl mt-32">
             {/* FAQ Title */}
-            <h1 className="text-4xl md:text-5xl font-semibold text-gray-800 text-center mb-8">
+            <h1 className="text-4xl md:text-5xl font-semibold text-center">
                 Frequently Asked Questions
             </h1>
 
             {/* FAQ Container */}
-            <div className="bg-white shadow-lg rounded-lg p-6">
+            <div className={`shadow-lg rounded-lg p-6 mt-20 ${isDark ? "bg-gray-800 text-gray-100" : ""}`}>
                 {faqData.map((faq, idx) => (
                     <div key={idx} className="border-b last:border-none py-3">
                         {/* Question Button */}
                         <button
                             onClick={() => toggleFAQ(idx)}
-                            className="flex justify-between w-full text-lg font-medium text-gray-700 hover:text-secondary transition-all"
+                            className="flex justify-between w-full text-lg font-medium  hover:text-secondary transition-all"
                         >
                             {faq.question}
                             <span className="p-2">
@@ -58,7 +59,7 @@ const FAQ = () => {
                             className={`overflow-hidden transition-all duration-300 ${isOpen === idx ? "max-h-40 opacity-100 py-2" : "max-h-0 opacity-0"
                                 }`}
                         >
-                            <p className="text-gray-600">{faq.answer}</p>
+                            <p className="text-gray-500">{faq.answer}</p>
                         </div>
                     </div>
                 ))}

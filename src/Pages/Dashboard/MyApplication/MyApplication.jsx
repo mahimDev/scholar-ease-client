@@ -73,10 +73,10 @@ const MyApplication = () => {
     return (
         <div>
 
-            <div className="p-6 bg-gray-100">
+            <div className="p-6 ">
                 <h2 className="text-4xl font-semibold mb-6 text-center">Your Applied Scholarships : {applications?.length}</h2>
                 <div className="overflow-x-auto">
-                    <table className="w-full table-auto bg-white rounded-lg shadow-lg">
+                    <table className="w-full table-auto  rounded-lg shadow-lg">
                         <thead >
                             <tr className="bg-blue-600 text-white ">
                                 <th className="py-2 px-4">University Name</th>
@@ -90,7 +90,7 @@ const MyApplication = () => {
                         </thead>
                         <tbody>
                             {applications?.map((scholarship, index) => (
-                                <tr key={index} className="border-t hover:bg-gray-100 text-center">
+                                <tr key={index} className="border-t hover:bg-gray-500 text-center">
                                     <td className="py-2 px-4">{scholarship?.universityName}</td>
                                     <td className="py-2 px-4">{scholarship?.universityCity},{scholarship?.universityCountry}</td>
                                     <td className="py-2 px-4">{scholarship?.feedback || 'No Feedback'}</td>

@@ -63,7 +63,7 @@ const ManageUsers = () => {
                     <tbody>
                         {/*  */}
                         {users?.map(user =>
-                            <tr key={user._id} className="hover:bg-gray-50 border-b transition duration-300">
+                            <tr key={user._id} className="hover:bg-gray-500 border-b transition duration-300">
                                 <td className="py-4 px-4 flex justify-start">
                                     <img src={user?.user_img} className="h-16 w-16 object-cover rounded  bg-gray-300" />
                                 </td>
