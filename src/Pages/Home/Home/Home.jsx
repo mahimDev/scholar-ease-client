@@ -4,6 +4,7 @@ import Banner from "../../../Components/Shared/Banner/Banner";
 import ScholarshipCategories from "../../../Components/Shared/ScholarshipCategories/ScholarshipCategories";
 import Featured from "../Featured/Featured";
 import FAQ from "../FAQ/FAQ"
+import Reviews from "../../../Components/Shared/Review/Review";
 const Home = () => {
     return (
         <div>
@@ -12,6 +13,7 @@ const Home = () => {
             <ScholarshipCategories />
             <AboutUs></AboutUs>
             <FAQ />
+            <Reviews />
         </div>
     );
 };

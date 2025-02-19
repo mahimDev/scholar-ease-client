@@ -41,14 +41,14 @@ const AllScholarship = () => {
                         onChange={(e) => setSearchValue(e.target.value)}
                         value={searchValue}
                         type="text"
-                        className="py-2 pr-40 focus:outline-none focus:ring-0"
+                        className="py-2 pr-40 focus:outline-none focus:ring-0 bg-transparent"
                         placeholder="Search Scholarships..."
                     />
                 </div>
             </div>
             <div className="w-11/12 mx-auto">
                 {/* sorting */}
-                <select onChange={(e) => setSorting(e.target.value)} className="text-darkGray border py-2 rounded pl-2 mb-4  md:mb-0">
+                <select onChange={(e) => setSorting(e.target.value)} className="text-darkGray border py-2 rounded pl-2 mb-4  md:mb-0 bg-transparent">
                     <option disabled>Select</option>
                     <option value="asc">ascending price</option>
                     <option value="des">descending price</option>
